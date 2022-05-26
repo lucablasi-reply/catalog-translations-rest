@@ -1,0 +1,42 @@
+[
+  {
+      "Addresses": [
+          {
+              "Host": "spclusellas.myvtex.com",
+              "IsCanonical": true,
+              "BasePath": "",
+              "Localization": {
+                  "": "pt-BR"
+              }
+          },
+          {
+              "Host": "spclusellas.vtexcommercestable.com.br",
+              "IsCanonical": false,
+              "BasePath": "",
+              "Localization": {
+                  "": "pt-BR"
+              }
+          },
+          {
+              "Host": "spclusellas.vtexcommercebeta.com.br",
+              "IsCanonical": false,
+              "BasePath": "",
+              "Localization": {
+                  "": "pt-BR"
+              }
+          }
+      ],
+      "Id": "2862a4ea-b213-44a8-bf39-f8c6f2f7da86",
+      "SiteName": "spclusellas",
+      "DefaultSalesChannelId": 1,
+      "DefaultLocale": "pt-BR",
+      "SupportedLocales": [
+          "en-US",
+          "pt-BR"
+      ]
+  }
+]
+
+{
+  "Id": "1efbc6d8-f73e-4968-8b44-4441860051d9"
+}

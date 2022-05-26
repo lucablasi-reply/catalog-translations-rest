@@ -1,12 +1,14 @@
 {
-  "name": "service-example",
+  "name": "catalog-translations-rest",
   "vendor": "vtex",
-  "version": "0.2.0",
-  "title": "Service Example",
-  "description": "Reference app for VTEX IO Services",
+  "version": "0.0.1",
+  "title": "Catalog Translations REST",
+  "description": "REST Api for catalog translations",
   "mustUpdateAt": "2018-01-04",
   "categories": [],
-  "dependencies": {},
+  "dependencies": {
+    "vtex.catalog-graphql": "1.x"
+  },
   "builders": {
     "node": "6.x",
     "docs": "0.x"
@@ -28,6 +30,26 @@
     },
     {
       "name": "colossus-write-logs"
+    },
+    {
+      "name": "graphql-query"
+    },
+    {
+      "name": "vtex.catalog-graphql:resolve-graphql"
+    },
+    {
+      "name": "outbound-access",
+      "attrs": {
+        "host": "{{account}}.vtexcommercestable.com.br",
+        "path": "/api/*"
+      }
+    },
+    {
+      "name": "outbound-access",
+      "attrs": {
+        "host": "portal.vtexcommercestable.com.br",
+        "path": "/api/*"
+      }
     }
   ],
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
