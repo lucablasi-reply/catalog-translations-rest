@@ -3,4 +3,4 @@ export * from './brand'
 export * from './product'
 export * from './sku'
 export * from './specification'
-
+export * from './bulkTranslate'

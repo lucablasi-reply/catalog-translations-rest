@@ -9,7 +9,7 @@ export async function categoryTranslation(
     req,
   } = ctx
 
-  const requestData: TransaltionData = await json(req)
+  const requestData: CategoryTranslationData = await json(req)
 
   const response = await catalogGraphQl.categoryTranslation(requestData)
 
@@ -28,7 +28,7 @@ export async function categoryGroupTranslation(
     req,
   } = ctx
 
-  const requestData: TransaltionData = await json(req)
+  const requestData: CategoryGroupData = await json(req)
 
   const response = await catalogGraphQl.categoryGroupTranslation(requestData)
 

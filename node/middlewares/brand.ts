@@ -9,7 +9,7 @@ export async function brandTranslation(
     req,
   } = ctx
 
-  const requestData: TransaltionData = await json(req)
+  const requestData: BrandData = await json(req)
 
   const response = await catalogGraphQl.brandTranslation(requestData)
 

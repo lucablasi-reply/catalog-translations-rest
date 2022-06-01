@@ -1,44 +1,54 @@
-interface TransaltionData {
-  args: CategoryData | BrandData | ProductData | SKUData | SKUProductSpecificationData | SpecificationValuesData | CategoryGroupData
+interface CategoryTranslationData {
+  args: {
+    id: string
+    name?: string
+    title?: string
+    description?: string
+    keywords?: string[]
+    linkId?: string
+  }
   locale: string
 }
 
-interface CategoryData {
-  id: string
-  name: string
-  title: string
-  description: string
-  keywords: string[]
-  linkId: string
-}
-
 interface BrandData {
-  id: string
-  name: string
-  text: string
-  siteTitle: string
-  keywords: string
+  args: {
+    id: string
+    name?: string
+    text?: string
+    siteTitle?: string
+    keywords?: string
+  }
+  locale: string
 }
 
 interface ProductData {
-  id: string
-  name: string
-  title: string
-  description: string
-  shortDescription: string
-  metaTagDescription: string
-  linkId: string
-  keywords: string[]
+  args: {
+    id: string
+    name?: string
+    title?: string
+    description?: string
+    shortDescription?: string
+    metaTagDescription?: string
+    linkId?: string
+    keywords?: string[]
+  }
+  locale: string
 }
 
 interface SKUData {
-  id: string
-  name: string
+  args: {
+    id: string
+    name?: string
+  }
+  locale: string
 }
 
 interface SKUProductSpecificationData {
-  fieldId: string
-  name: string
+  args: {
+    fieldId: string
+    name: string
+  }
+  locale: string
 }
 
 interface FieldValueNames {
@@ -47,15 +57,30 @@ interface FieldValueNames {
 }
 
 interface SpecificationValuesData {
-  fieldId: string
-  fieldValueNames: FieldValueNames[]
+  args: {
+    fieldId: string
+    fieldValueNames: FieldValueNames[]
+  }
+  locale: string
 }
 
 interface CategoryGroupData {
-  groupId: string
-  name: string
+  args: {
+    groupId: string
+    name: string
+  }
+  locale: string
 }
 
 interface TranslationResponse {
   translateCategory: boolean
 }
+
+type TranslatableData =
+  | CategoryTranslationData
+  | BrandData
+  | ProductData
+  | SKUData
+  | SKUProductSpecificationData
+  | SpecificationValuesData
+  | CategoryGroupData

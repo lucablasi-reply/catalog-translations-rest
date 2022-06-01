@@ -9,10 +9,9 @@ export async function productTranslation(
     req,
   } = ctx
 
-  const requestData: TransaltionData = await json(req)
-  console.log(requestData)
+  const requestData: ProductData = await json(req)
   const response = await catalogGraphQl.productTranslation(requestData)
-  console.log(response)
+
   ctx.status = 202
   ctx.body = response
 

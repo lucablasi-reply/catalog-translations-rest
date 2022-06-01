@@ -1,7 +1,9 @@
 {
   "dependencies": {
     "co-body": "^6.0.0",
-    "ramda": "^0.25.0"
+    "joi": "^17.6.0",
+    "ramda": "^0.25.0",
+    "throttled-queue": "^2.1.4"
   },
   "devDependencies": {
     "@types/co-body": "^0.0.3",

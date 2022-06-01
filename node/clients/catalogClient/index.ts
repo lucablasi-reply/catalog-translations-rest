@@ -1,7 +1,20 @@
-import type { IOContext,  InstanceOptions, Serializable, GraphQLResponse } from '@vtex/api'
+import type {
+  IOContext,
+  InstanceOptions,
+  Serializable,
+  GraphQLResponse,
+} from '@vtex/api'
 import { AppGraphQLClient } from '@vtex/api'
 
-import { CATEGORY_TRANSLATIONS_MUTATION, BRAND_TRANSLATION_MUTATION, PRODUCT_TRANSLATION_MUTATION, SKU_TRANSLATION_MUTATION, SKU_PRODUCT_SPCIFICATION_TRANSLATION_MUTATION, SPECIFICATION_VALUES_TRANSLATION_MUTATION, CATEGORY_GROUP_TRANSLATION_MUTATION } from './queries'
+import {
+  CATEGORY_TRANSLATIONS_MUTATION,
+  BRAND_TRANSLATION_MUTATION,
+  PRODUCT_TRANSLATION_MUTATION,
+  SKU_TRANSLATION_MUTATION,
+  SKU_PRODUCT_SPCIFICATION_TRANSLATION_MUTATION,
+  SPECIFICATION_VALUES_TRANSLATION_MUTATION,
+  CATEGORY_GROUP_TRANSLATION_MUTATION,
+} from './queries'
 
 class CustomGraphQLError extends Error {
   public graphQLErrors: any
@@ -14,7 +27,7 @@ class CustomGraphQLError extends Error {
 
 function throwOnGraphQLErrors<T extends Serializable>(message: string) {
   return function maybeGraphQLResponse(response: GraphQLResponse<T>) {
-    if (response && response.errors && response.errors.length > 0) {
+    if (response?.errors && response.errors.length > 0) {
       throw new CustomGraphQLError(message, response.errors)
     }
 
@@ -22,42 +35,85 @@ function throwOnGraphQLErrors<T extends Serializable>(message: string) {
   }
 }
 
-
 export class CatalogGraphQL extends AppGraphQLClient {
-  public constructor(ctx: IOContext, opts?: InstanceOptions) {
+  constructor(ctx: IOContext, opts?: InstanceOptions) {
     super('vtex.catalog-graphql@1.x', ctx, {
       ...opts,
       headers: {
-        ...opts && opts.headers,
+        ...opts?.headers,
         cookie: `VtexIdclientAutCookie=${ctx.authToken}`,
-      }})
-  }
-
-  private translationMutation = async (query: string, variables: TransaltionData): Promise<GraphQLResponse<Serializable>> => {
-    return await this.graphql.mutate({
-      mutate: query,
-      variables
-    }).then(
-      throwOnGraphQLErrors(
-        'Error updating data from vtex.catalog-graphql'
-      )
-    ).then((query) => {
-      return query
+      },
     })
   }
 
-  public categoryTranslation = async (categoryData: TransaltionData): Promise<GraphQLResponse<Serializable>> => await this.translationMutation(CATEGORY_TRANSLATIONS_MUTATION, categoryData)
+  private translationMutation = async (
+    query: string,
+    variables:
+      | CategoryTranslationData
+      | BrandData
+      | ProductData
+      | SKUData
+      | SKUProductSpecificationData
+      | SpecificationValuesData
+      | CategoryGroupData
+  ): Promise<GraphQLResponse<Serializable>> => {
+    return (
+      this.graphql
+        .mutate({
+          mutate: query,
+          variables,
+        })
+        .then(
+          throwOnGraphQLErrors('Error updating data from vtex.catalog-graphql')
+        )
+        // eslint-disable-next-line @typescript-eslint/no-shadow
+        .then((query) => {
+          return query
+        })
+    )
+  }
 
-  public brandTranslation = async (brandData: TransaltionData): Promise<GraphQLResponse<Serializable>> => await this.translationMutation(BRAND_TRANSLATION_MUTATION, brandData)
+  public categoryTranslation = async (
+    categoryData: CategoryTranslationData
+  ): Promise<any> =>
+    this.translationMutation(CATEGORY_TRANSLATIONS_MUTATION, categoryData)
 
-  public productTranslation = async (productData: TransaltionData):  Promise<GraphQLResponse<Serializable>> => await this.translationMutation(PRODUCT_TRANSLATION_MUTATION, productData)
+  public brandTranslation = async (
+    brandData: BrandData
+  ): Promise<GraphQLResponse<Serializable>> =>
+    this.translationMutation(BRAND_TRANSLATION_MUTATION, brandData)
 
-  public skuTranslation = async (skuData: TransaltionData):  Promise<GraphQLResponse<Serializable>> => await this.translationMutation(SKU_TRANSLATION_MUTATION, skuData)
+  public productTranslation = async (
+    productData: ProductData
+  ): Promise<GraphQLResponse<Serializable>> =>
+    this.translationMutation(PRODUCT_TRANSLATION_MUTATION, productData)
 
-  public skuProductSpecificationTranslation = async (specificationData: TransaltionData):  Promise<GraphQLResponse<Serializable>> => await this.translationMutation(SKU_PRODUCT_SPCIFICATION_TRANSLATION_MUTATION, specificationData)
+  public skuTranslation = async (
+    skuData: SKUData
+  ): Promise<GraphQLResponse<Serializable>> =>
+    this.translationMutation(SKU_TRANSLATION_MUTATION, skuData)
 
-  public specificationValuesTranslation = async (specificationData: TransaltionData):  Promise<GraphQLResponse<Serializable>> => await this.translationMutation(SPECIFICATION_VALUES_TRANSLATION_MUTATION, specificationData)
+  public skuProductSpecificationTranslation = async (
+    specificationData: SKUProductSpecificationData
+  ): Promise<GraphQLResponse<Serializable>> =>
+    this.translationMutation(
+      SKU_PRODUCT_SPCIFICATION_TRANSLATION_MUTATION,
+      specificationData
+    )
 
-  public categoryGroupTranslation = async (categoryGroupData: TransaltionData):  Promise<GraphQLResponse<Serializable>> => await this.translationMutation(CATEGORY_GROUP_TRANSLATION_MUTATION, categoryGroupData)
+  public specificationValuesTranslation = async (
+    specificationData: SpecificationValuesData
+  ): Promise<GraphQLResponse<Serializable>> =>
+    this.translationMutation(
+      SPECIFICATION_VALUES_TRANSLATION_MUTATION,
+      specificationData
+    )
+
+  public categoryGroupTranslation = async (
+    categoryGroupData: CategoryGroupData
+  ): Promise<GraphQLResponse<Serializable>> =>
+    this.translationMutation(
+      CATEGORY_GROUP_TRANSLATION_MUTATION,
+      categoryGroupData
+    )
 }
-

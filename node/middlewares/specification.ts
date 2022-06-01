@@ -9,11 +9,12 @@ export async function skuProductSpecificationTranslation(
     req,
   } = ctx
 
-  const requestData: TransaltionData = await json(req)
-  console.log(requestData)
+  const requestData: SKUProductSpecificationData = await json(req)
 
-  const response = await catalogGraphQl.skuProductSpecificationTranslation(requestData)
-  console.log(response)
+  const response = await catalogGraphQl.skuProductSpecificationTranslation(
+    requestData
+  )
+
   ctx.status = 202
   ctx.body = response
 
@@ -29,13 +30,14 @@ export async function specificationValuesTranslation(
     req,
   } = ctx
 
-  const requestData: TransaltionData = await json(req)
+  const requestData: SpecificationValuesData = await json(req)
 
-  const response = await catalogGraphQl.specificationValuesTranslation(requestData)
+  const response = await catalogGraphQl.specificationValuesTranslation(
+    requestData
+  )
 
   ctx.status = 202
   ctx.body = response
 
   next()
 }
-

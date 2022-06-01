@@ -9,7 +9,7 @@ export async function skuTranslation(
     req,
   } = ctx
 
-  const requestData: TransaltionData = await json(req)
+  const requestData: SKUData = await json(req)
 
   const response = await catalogGraphQl.skuTranslation(requestData)
 

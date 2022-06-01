@@ -2,9 +2,18 @@ import type { ClientsConfig, ServiceContext, RecorderState } from '@vtex/api'
 import { LRUCache, Service, method } from '@vtex/api'
 
 import { Clients } from './clients'
-import { categoryTranslation, productTranslation, brandTranslation, skuTranslation, skuProductSpecificationTranslation, specificationValuesTranslation } from './middlewares'
+import {
+  categoryTranslation,
+  productTranslation,
+  brandTranslation,
+  skuTranslation,
+  skuProductSpecificationTranslation,
+  specificationValuesTranslation,
+  bulkTranslate,
+  validateBulkBody,
+} from './middlewares'
 
-const TIMEOUT_MS = 800
+const TIMEOUT_MS = 20000
 
 const memoryCache = new LRUCache<string, any>({ max: 5000 })
 
@@ -28,29 +37,33 @@ declare global {
 
   interface State extends RecorderState {
     code: number
+    translationData: BulkTranslationData
   }
 }
 
 export default new Service({
   clients,
   routes: {
+    bulkTranslate: method({
+      POST: [validateBulkBody, bulkTranslate],
+    }),
     categoryTranslation: method({
-      POST: [categoryTranslation]
+      POST: [categoryTranslation],
     }),
     brandTranslation: method({
-      POST: [brandTranslation]
+      POST: [brandTranslation],
     }),
     productTranslation: method({
-      POST: [productTranslation]
+      POST: [productTranslation],
     }),
     skuTranslation: method({
-      POST: [skuTranslation]
+      POST: [skuTranslation],
     }),
     skuSpecificationTranslation: method({
-      POST: [skuProductSpecificationTranslation]
+      POST: [skuProductSpecificationTranslation],
     }),
     specificationValuesTranslation: method({
-      POST: [specificationValuesTranslation]
-    })
+      POST: [specificationValuesTranslation],
+    }),
   },
 })
