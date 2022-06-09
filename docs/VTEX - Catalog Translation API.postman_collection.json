@@ -1,0 +1,321 @@
+{
+  "info": {
+    "_postman_id": "03488153-57af-4a79-b2c1-32c18a1158fb",
+    "name": "VTEX - Catalog Translation API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "20460438"
+  },
+  "item": [
+    {
+      "name": "Category Translation",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "{{AuthCookieProp}}",
+            "value": "{{VTEX-AuthCookie}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"args\": {\n        \"id\": \"\",\n        \"name\": \"\",\n        \"title\":\"\",\n        \"description\": \"\",\n        \"keywords\": [],\n        \"linkId\": \"\"\n    },\n    \"locale\": \"\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://{{vtex-account}}.myvtex.com/v0/category",
+          "protocol": "https",
+          "host": ["{{vtex-account}}", "myvtex", "com"],
+          "path": ["v0", "category"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Brand Translation",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "VtexIdclientAutCookie",
+            "value": "{{VTEX-AuthCookie}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"args\": {\n        \"id\": \"\",\n        \"name\": \"\",\n        \"text\": \"\",\n        \"siteTitle\": \"\",\n        \"keywords\": \"\"\n    },\n    \"locale\": \"\"\n}"
+        },
+        "url": {
+          "raw": "https://{{vtex-account}}.myvtex.com/v0/brand",
+          "protocol": "https",
+          "host": ["{{vtex-account}}", "myvtex", "com"],
+          "path": ["v0", "brand"],
+          "query": [
+            {
+              "key": "{{AuthCookieProp}}",
+              "value": "{{VTEX-AuthCookie}}",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Product Translation",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "VtexIdclientAutCookie",
+            "value": "{{VTEX-AuthCookie}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"args\": {\n    \"id\": \"\",\n    \"name\": \"\",\n    \"title\": \"\", \n    \"description\": \"\",\n    \"shortDescription\": \"\",\n    \"linkId\": \"\",\n    \"metaTagDescription\": \"\",\n    \"keywords\": []\n  },\n  \"locale\": \"\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://catalogtranslationsrest--vtexspain.myvtex.com/v0/product",
+          "protocol": "https",
+          "host": ["catalogtranslationsrest--vtexspain", "myvtex", "com"],
+          "path": ["v0", "product"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "SKU Translation",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "VtexIdclientAutCookie",
+            "value": "{{VTEX-AuthCookie}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"args\": {\n        \"id\": \"\",\n        \"name\": \"\"\n    },\n    \"locale\": \"\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://{{vtex-account}}.myvtex.com/v0/sku",
+          "protocol": "https",
+          "host": ["{{vtex-account}}", "myvtex", "com"],
+          "path": ["v0", "sku"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "SKU Specification Translation",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "VtexIdclientAutCookie",
+            "value": "{{VTEX-AuthCookie}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"args\": {\n        \"fieldId\": \"\",\n        \"name\": \"\"\n    },\n    \"locale\": \"\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://{{vtex-account}}.myvtex.com/v0/sku-specification",
+          "protocol": "https",
+          "host": ["{{vtex-account}}", "myvtex", "com"],
+          "path": ["v0", "sku-specification"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Specification Values Translation",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "VtexIdclientAutCookie",
+            "value": "{{VTEX-AuthCookie}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"args\": {\n        \"fieldId\": \"\",\n        \"fieldValueNames\": [\n            {\n                \"id\": \"\",\n                \"name\": \"\"\n            }\n        ]\n    },\n    \"locale\": \"\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://{{vtex-account}}.myvtex.com/v0/specification-values",
+          "protocol": "https",
+          "host": ["{{vtex-account}}", "myvtex", "com"],
+          "path": ["v0", "specification-values"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Category Group Translation",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "VtexIdclientAutCookie",
+            "value": "{{VTEX-AuthCookie}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"args\": {\n        \"groupId\": \"\",\n        \"name\": \"\"\n    },\n    \"locale\": \"\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://{{vtex-account}}.myvtex.com/v0/category-group",
+          "protocol": "https",
+          "host": ["{{vtex-account}}", "myvtex", "com"],
+          "path": ["v0", "category-group"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Bulk Translation",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "VtexIdclientAutCookie",
+            "value": "{{VTEX-AuthCookie}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{   \n    \"notificationEmail\": \"\",\n    \"categories\": [],\n    \"brands\": [],\n    \"products\": [],\n    \"skus\": [],\n    \"skusProductsSpecifications\": [],\n    \"specificationValuesData\": [],\n    \"categoriesGroupsData\": []\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://{{vtex-account}}.myvtex.com/v0/bulk-translate",
+          "protocol": "https",
+          "host": ["{{vtex-account}}", "myvtex", "com"],
+          "path": ["v0", "bulk-translate"]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "vtex-account",
+      "value": ""
+    },
+    {
+      "key": "VTEX-AuthCookie",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "AuthCookieProp",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "SecretToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "AccesKey",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}
