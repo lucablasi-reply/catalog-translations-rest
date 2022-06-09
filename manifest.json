@@ -8,7 +8,8 @@
   "categories": [],
   "dependencies": {
     "vtex.catalog-graphql": "1.x",
-    "vtex.file-manager-graphql": "0.x"
+    "vtex.file-manager-graphql": "0.x",
+    "vtex.file-manager": "0.x"
   },
   "builders": {
     "node": "6.x",
@@ -57,6 +58,9 @@
         "host": "portal.vtexcommercestable.com.br",
         "path": "/api/*"
       }
+    },
+    {
+      "name": "vtex.file-manager:file-manager-read-write"
     }
   ],
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
