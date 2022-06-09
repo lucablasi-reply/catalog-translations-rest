@@ -8,6 +8,7 @@ import {
   SkuProductSpecificationSchema,
   CategoryGroupSchems,
   ProductSchema,
+  notificationEmailValidation,
 } from './validationSchemas/joi'
 /* eslint-disable no-console */
 
@@ -126,6 +127,17 @@ export async function validateBulkBody(
 ) {
   const translationData: BulkTranslationData = await json(ctx.req)
 
+  const { error: emailError } = notificationEmailValidation.validate(
+    translationData
+  )
+
+  if (emailError) {
+    ctx.status = 422
+    ctx.body = emailError.details.map((detail) => detail.message)
+
+    return
+  }
+
   const validationResult = validateTranslationBody(translationData)
 
   if (validationResult.errors) {
@@ -134,7 +146,8 @@ export async function validateBulkBody(
   } else {
     ctx.state.translationData = translationData
     ctx.state.notificationEmail = translationData.notificationEmail
-    ctx.body = 'ok'
+    ctx.body =
+      'Your translations are being processed. You will receive an email with the details in the email account specified in the request.'
     ctx.status = 200
     next()
   }

@@ -4,13 +4,13 @@ type Throttle = <Return = unknown>(
 
 interface TranslationValidationResponse {
   errors: number
-  categories: any
-  brands: any
-  products: any
-  skus: any
-  skusProductsSpecifications: any
-  specificationValuesData: any
-  categoriesGroupsData: any
+  categories: any[]
+  brands: any[]
+  products: any[]
+  skus: any[]
+  skusProductsSpecifications: any[]
+  specificationValuesData: any[]
+  categoriesGroupsData: any[]
 }
 
 interface EntityTranslationData {

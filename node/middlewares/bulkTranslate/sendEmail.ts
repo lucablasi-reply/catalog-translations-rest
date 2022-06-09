@@ -1,12 +1,34 @@
 /* eslint-disable no-console */
 import fs from 'fs'
 
+import { v4 as uuidv4 } from 'uuid'
+
 import { translationReportEmailTemplate } from './emailTemplate/translationReport'
+
+const createJsonFile = (data: TranslationsDataResponse) => {
+  const fileName = `${uuidv4()}.json`
+
+  fs.writeFileSync(fileName, JSON.stringify(data))
+
+  const file = fs.readFileSync(fileName, {
+    encoding: 'utf8',
+  })
+
+  const fileData: IncomingFile = {
+    filename: fileName,
+    encoding: 'utf8',
+    mimeType: 'application/json',
+  }
+
+  return { file, fileName, fileData }
+}
+
+const deleteJsonFile = (filePath: string) => fs.unlinkSync(filePath)
 
 export async function sendEmail(ctx: Context, next: () => Promise<any>) {
   const {
     state: { notificationEmail, translationResponse },
-    clients: { messageCenter, fileManager },
+    clients: { messageCenter, fileManagerRest },
   } = ctx
 
   const emailTemplateName = 'bulk-translation-report'
@@ -24,24 +46,19 @@ export async function sendEmail(ctx: Context, next: () => Promise<any>) {
         )
       }
 
-      const fileName = `${Date.now()}-translationReport.json`
-      // const filePath = path.join(__dirname, '..', '..', 'tmp')
+      const { file, fileName, fileData } = createJsonFile(translationResponse)
 
-      fs.writeFileSync(fileName, JSON.stringify(translationResponse))
-
-      const file = fs.readFileSync(fileName, {
-        encoding: 'utf8',
-      })
-
-      const fileBlob = Buffer.from(file)
-      const filef = Uint8Array.from(fileBlob).buffer
-
-      const { data } = await fileManager.saveFile(filef, 'translationResponse')
+      const { url } = await fileManagerRest.saveFile(
+        fileData,
+        file,
+        't',
+        fileName
+      )
 
       await messageCenter.sendEmail({
         templateName: emailTemplateName,
         jsonData: {
-          translationResponse: JSON.stringify(data),
+          translationResponse: url,
           to: {
             email: notificationEmail,
             subject: 'Translation Report',
@@ -50,10 +67,10 @@ export async function sendEmail(ctx: Context, next: () => Promise<any>) {
         providerName: '',
       })
 
-      fs.unlinkSync(fileName)
-
-      // eslint-disable-next-line no-empty
-    } catch (error) {}
+      deleteJsonFile(fileName)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   next()

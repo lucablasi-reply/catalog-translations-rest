@@ -1,5 +1,16 @@
 import * as Joi from 'joi'
 
+export const notificationEmailValidation = Joi.object({
+  notificationEmail: Joi.string().email().required(),
+  categories: Joi.array(),
+  brands: Joi.array(),
+  products: Joi.array(),
+  skus: Joi.array(),
+  skusProductsSpecifications: Joi.array(),
+  specificationValuesData: Joi.array(),
+  categoriesGroupsData: Joi.array(),
+})
+
 const translateSchema = (joiObject: Joi.ObjectSchema): Joi.ObjectSchema =>
   Joi.object({
     args: joiObject,

@@ -11,3 +11,18 @@ interface JsonData {
     subject: string
   }
 }
+
+interface IncomingFile {
+  filename: string
+  mimeType: string
+  encoding: string
+}
+
+interface FileResponse {
+  url: FileData[] | void
+  name: string
+}
+
+interface FileData {
+  name: string
+}

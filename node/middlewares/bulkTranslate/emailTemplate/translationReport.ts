@@ -16,9 +16,9 @@ export const translationReportEmailTemplate = `
     leftmargin="0"
     topmargin="0"
   >
-    <pre>
-        {{translationResponse}}
-    </pre>
+    <h2>Translations Results</h2>
+    <p>You can check the result of your translations in the following link</p>
+    <p>{{translationResponse}}</p>
   </body>
 </html>
 `
