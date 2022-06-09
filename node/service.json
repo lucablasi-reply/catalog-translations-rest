@@ -38,5 +38,15 @@
       "path": "/v0/category-group",
       "public": true
     }
+  },
+  "events": {
+    "onAppInstalledEvent": {
+      "sender": "apps",
+      "keys": ["setup"]
+    },
+    "onAppLinked": {
+      "sender": "apps",
+      "keys": ["linked", "relinked"]
+    }
   }
 }

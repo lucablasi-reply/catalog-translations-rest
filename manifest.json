@@ -1,13 +1,14 @@
 {
   "name": "catalog-translations-rest",
   "vendor": "vtex",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "title": "Catalog Translations REST",
   "description": "REST Api for catalog translations",
   "mustUpdateAt": "2018-01-04",
   "categories": [],
   "dependencies": {
-    "vtex.catalog-graphql": "1.x"
+    "vtex.catalog-graphql": "1.x",
+    "vtex.file-manager-graphql": "0.x"
   },
   "builders": {
     "node": "6.x",
@@ -24,6 +25,12 @@
         "host": "httpstat.us",
         "path": "*"
       }
+    },
+    {
+      "name": "template-criar"
+    },
+    {
+      "name": "template-editar"
     },
     {
       "name": "colossus-fire-event"

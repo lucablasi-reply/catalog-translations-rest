@@ -17,11 +17,12 @@ const updateValidationResults = (
   validationResults: TranslationValidationResponse
 ) => {
   if (result.error) {
-    validationResults[entity].push(result.error)
+    validationResults[entity].push({
+      value: result.value,
+      error: result.error.details.map((detail) => detail.message),
+    })
     validationResults.errors += 1
   }
-
-  console.log(validationResults)
 
   return validationResults
 }
@@ -89,6 +90,17 @@ const validateTranslationBody = (
 
         break
 
+      case 'specificationValuesData':
+        for (const specificationValueData of translationData[entity]) {
+          const entityValidation = CategoryGroupSchems.validate(
+            specificationValueData
+          )
+
+          updateValidationResults(entity, entityValidation, validationResults)
+        }
+
+        break
+
       case 'categoriesGroupsData':
         for (const categoriesGroupsData of translationData[entity]) {
           const entityValidation = CategoryGroupSchems.validate(
@@ -121,7 +133,8 @@ export async function validateBulkBody(
     ctx.body = validationResult
   } else {
     ctx.state.translationData = translationData
-    ctx.body = 'received'
+    ctx.state.notificationEmail = translationData.notificationEmail
+    ctx.body = 'ok'
     ctx.status = 200
     next()
   }

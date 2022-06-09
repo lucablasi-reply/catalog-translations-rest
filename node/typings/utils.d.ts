@@ -52,6 +52,7 @@ type TranslatablePropTypes =
   | 'specificationValuesData'
 
 interface BulkTranslationData {
+  notificationEmail?: string
   categories: CategoryTranslationData[]
   brands: BrandData[]
   products: ProductData[]

@@ -58,7 +58,9 @@ export async function bulkTranslate(
     state: { translationData },
   } = ctx
 
-  const throttle = throttledQueue(10, 1000, true)
+  const requestPerInterval = 10
+  const intervalMiliseconds = 1000
+  const throttle = throttledQueue(requestPerInterval, intervalMiliseconds, true)
 
   const translationResponse: TranslationsDataResponse = {
     total: 0,
@@ -178,5 +180,6 @@ export async function bulkTranslate(
     }
   }
 
+  ctx.state.translationResponse = translationResponse
   next()
 }

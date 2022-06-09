@@ -11,7 +11,9 @@ import {
   specificationValuesTranslation,
   bulkTranslate,
   validateBulkBody,
+  sendEmail,
 } from './middlewares'
+import { createEmailTemplate } from './events/createEmailTemplate'
 
 const TIMEOUT_MS = 20000
 
@@ -38,14 +40,20 @@ declare global {
   interface State extends RecorderState {
     code: number
     translationData: BulkTranslationData
+    notificationEmail: string | undefined
+    translationResponse: TranslationsDataResponse
   }
 }
 
 export default new Service({
   clients,
+  events: {
+    onAppInstalled: createEmailTemplate,
+    onAppLinkedEvent: createEmailTemplate,
+  },
   routes: {
     bulkTranslate: method({
-      POST: [validateBulkBody, bulkTranslate],
+      POST: [validateBulkBody, bulkTranslate, sendEmail],
     }),
     categoryTranslation: method({
       POST: [categoryTranslation],
