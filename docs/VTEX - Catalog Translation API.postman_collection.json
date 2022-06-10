@@ -32,10 +32,10 @@
           }
         },
         "url": {
-          "raw": "https://{{vtex-account}}.myvtex.com/v0/category",
+          "raw": "https://{{vtex-account}}.myvtex.com/v0/catalog-translation/category",
           "protocol": "https",
           "host": ["{{vtex-account}}", "myvtex", "com"],
-          "path": ["v0", "category"]
+          "path": ["v0", "catalog-translation", "category"]
         }
       },
       "response": []
@@ -61,10 +61,10 @@
           "raw": "{\n    \"args\": {\n        \"id\": \"\",\n        \"name\": \"\",\n        \"text\": \"\",\n        \"siteTitle\": \"\",\n        \"keywords\": \"\"\n    },\n    \"locale\": \"\"\n}"
         },
         "url": {
-          "raw": "https://{{vtex-account}}.myvtex.com/v0/brand",
+          "raw": "https://{{vtex-account}}.myvtex.com/v0/catalog-translation/brand",
           "protocol": "https",
           "host": ["{{vtex-account}}", "myvtex", "com"],
-          "path": ["v0", "brand"],
+          "path": ["v0", "catalog-translation", "brand"],
           "query": [
             {
               "key": "{{AuthCookieProp}}",
@@ -102,10 +102,10 @@
           }
         },
         "url": {
-          "raw": "https://catalogtranslationsrest--vtexspain.myvtex.com/v0/product",
+          "raw": "https://catalogtranslationsrest--vtexspain.myvtex.com/v0/catalog-translation/product",
           "protocol": "https",
           "host": ["catalogtranslationsrest--vtexspain", "myvtex", "com"],
-          "path": ["v0", "product"]
+          "path": ["v0", "catalog-translation", "product"]
         }
       },
       "response": []
@@ -136,10 +136,10 @@
           }
         },
         "url": {
-          "raw": "https://{{vtex-account}}.myvtex.com/v0/sku",
+          "raw": "https://{{vtex-account}}.myvtex.com/v0/catalog-translation/sku",
           "protocol": "https",
           "host": ["{{vtex-account}}", "myvtex", "com"],
-          "path": ["v0", "sku"]
+          "path": ["v0", "catalog-translation", "sku"]
         }
       },
       "response": []
@@ -170,10 +170,10 @@
           }
         },
         "url": {
-          "raw": "https://{{vtex-account}}.myvtex.com/v0/sku-specification",
+          "raw": "https://{{vtex-account}}.myvtex.com/v0/catalog-translation/sku-specification",
           "protocol": "https",
           "host": ["{{vtex-account}}", "myvtex", "com"],
-          "path": ["v0", "sku-specification"]
+          "path": ["v0", "catalog-translation", "sku-specification"]
         }
       },
       "response": []
@@ -204,10 +204,10 @@
           }
         },
         "url": {
-          "raw": "https://{{vtex-account}}.myvtex.com/v0/specification-values",
+          "raw": "https://{{vtex-account}}.myvtex.com/v0/catalog-translation/specification-values",
           "protocol": "https",
           "host": ["{{vtex-account}}", "myvtex", "com"],
-          "path": ["v0", "specification-values"]
+          "path": ["v0", "catalog-translation", "specification-values"]
         }
       },
       "response": []
@@ -238,10 +238,10 @@
           }
         },
         "url": {
-          "raw": "https://{{vtex-account}}.myvtex.com/v0/category-group",
+          "raw": "https://{{vtex-account}}.myvtex.com/v0/catalog-translation/category-group",
           "protocol": "https",
           "host": ["{{vtex-account}}", "myvtex", "com"],
-          "path": ["v0", "category-group"]
+          "path": ["v0", "catalog-translation", "category-group"]
         }
       },
       "response": []
@@ -267,10 +267,10 @@
           }
         },
         "url": {
-          "raw": "https://{{vtex-account}}.myvtex.com/v0/bulk-translate",
+          "raw": "https://{{vtex-account}}.myvtex.com/v0/catalog-translation/bulk-translate",
           "protocol": "https",
           "host": ["{{vtex-account}}", "myvtex", "com"],
-          "path": ["v0", "bulk-translate"]
+          "path": ["v0", "catalog-translation", "bulk-translate"]
         }
       },
       "response": []

@@ -7,35 +7,35 @@
   "workers": 1,
   "routes": {
     "bulkTranslate": {
-      "path": "/v0/bulk-translate",
+      "path": "/v0/catalog-translation/bulk-translate",
       "public": true
     },
     "categoryTranslation": {
-      "path": "/v0/category",
+      "path": "/v0/catalog-translation/category",
       "public": true
     },
     "brandTranslation": {
-      "path": "/v0/brand",
+      "path": "/v0/catalog-translation/brand",
       "public": true
     },
     "productTranslation": {
-      "path": "/v0/product",
+      "path": "/v0/catalog-translation/product",
       "public": true
     },
     "skuTranslation": {
-      "path": "/v0/sku",
+      "path": "/v0/catalog-translation/sku",
       "public": true
     },
     "skuSpecificationTranslation": {
-      "path": "/v0/sku-specification",
+      "path": "/v0/catalog-translation/sku-specification",
       "public": true
     },
     "specificationValuesTranslation": {
-      "path": "/v0/specification-values",
+      "path": "/v0/catalog-translation/specification-values",
       "public": true
     },
     "categoryGroupTranslation": {
-      "path": "/v0/category-group",
+      "path": "/v0/catalog-translation/category-group",
       "public": true
     }
   },
