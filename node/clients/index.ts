@@ -2,7 +2,7 @@ import { IOClients } from '@vtex/api'
 
 import { CatalogGraphQL } from './catalogClient'
 import { MessageCenter } from './messageCenter'
-import { FileManagerRest } from './fileManagerRest'
+import { FileManager } from './fileManager'
 
 // Extend the default IOClients implementation with our own custom clients.
 export class Clients extends IOClients {
@@ -14,7 +14,7 @@ export class Clients extends IOClients {
     return this.getOrSet('messageCenter', MessageCenter)
   }
 
-  public get fileManagerRest() {
-    return this.getOrSet('fileManagerRest', FileManagerRest)
+  public get fileManager() {
+    return this.getOrSet('fileManager', FileManager)
   }
 }
