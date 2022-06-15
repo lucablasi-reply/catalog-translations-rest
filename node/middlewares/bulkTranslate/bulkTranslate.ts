@@ -77,11 +77,11 @@ export async function bulkTranslate(
     },
   }
 
-  for (const prop in translationData) {
-    switch (prop) {
+  for (const translationType in translationData) {
+    switch (translationType) {
       case 'categories': {
         const entityTranslationResponse: EntityTranslationData = await entityTranslator(
-          translationData[prop],
+          translationData[translationType],
           categoryTranslation,
           throttle
         )
@@ -89,7 +89,7 @@ export async function bulkTranslate(
         translationResponseUpdate(
           translationResponse,
           entityTranslationResponse,
-          prop
+          translationType
         )
 
         break
@@ -97,7 +97,7 @@ export async function bulkTranslate(
 
       case 'brands': {
         const entityTranslationResponse: EntityTranslationData = await entityTranslator(
-          translationData[prop],
+          translationData[translationType],
           brandTranslation,
           throttle
         )
@@ -105,7 +105,7 @@ export async function bulkTranslate(
         translationResponseUpdate(
           translationResponse,
           entityTranslationResponse,
-          prop
+          translationType
         )
 
         break
@@ -113,7 +113,7 @@ export async function bulkTranslate(
 
       case 'products': {
         const entityTranslationResponse: EntityTranslationData = await entityTranslator(
-          translationData[prop],
+          translationData[translationType],
           productTranslation,
           throttle
         )
@@ -121,7 +121,7 @@ export async function bulkTranslate(
         translationResponseUpdate(
           translationResponse,
           entityTranslationResponse,
-          prop
+          translationType
         )
 
         break
@@ -129,7 +129,7 @@ export async function bulkTranslate(
 
       case 'skus': {
         const entityTranslationResponse: EntityTranslationData = await entityTranslator(
-          translationData[prop],
+          translationData[translationType],
           skuTranslation,
           throttle
         )
@@ -137,7 +137,7 @@ export async function bulkTranslate(
         translationResponseUpdate(
           translationResponse,
           entityTranslationResponse,
-          prop
+          translationType
         )
 
         break
@@ -145,7 +145,7 @@ export async function bulkTranslate(
 
       case 'skusProductsSpecifications': {
         const entityTranslationResponse: EntityTranslationData = await entityTranslator(
-          translationData[prop],
+          translationData[translationType],
           skuProductSpecificationTranslation,
           throttle
         )
@@ -153,7 +153,7 @@ export async function bulkTranslate(
         translationResponseUpdate(
           translationResponse,
           entityTranslationResponse,
-          prop
+          translationType
         )
 
         break
@@ -161,7 +161,7 @@ export async function bulkTranslate(
 
       case 'categoriesGroupsData': {
         const entityTranslationResponse: EntityTranslationData = await entityTranslator(
-          translationData[prop],
+          translationData[translationType],
           categoryGroupTranslation,
           throttle
         )
@@ -169,7 +169,7 @@ export async function bulkTranslate(
         translationResponseUpdate(
           translationResponse,
           entityTranslationResponse,
-          prop
+          translationType
         )
 
         break

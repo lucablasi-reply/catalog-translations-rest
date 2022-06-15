@@ -28,7 +28,7 @@ const deleteJsonFile = (filePath: string) => fs.unlinkSync(filePath)
 export async function sendEmail(ctx: Context, next: () => Promise<any>) {
   const {
     state: { notificationEmail, translationResponse },
-    clients: { messageCenter, fileManagerRest },
+    clients: { messageCenter, fileManager },
   } = ctx
 
   const emailTemplateName = 'bulk-translation-report'
@@ -48,12 +48,7 @@ export async function sendEmail(ctx: Context, next: () => Promise<any>) {
 
       const { file, fileName, fileData } = createJsonFile(translationResponse)
 
-      const { url } = await fileManagerRest.saveFile(
-        fileData,
-        file,
-        't',
-        fileName
-      )
+      const { url } = await fileManager.saveFile(fileData, file, 't', fileName)
 
       await messageCenter.sendEmail({
         templateName: emailTemplateName,

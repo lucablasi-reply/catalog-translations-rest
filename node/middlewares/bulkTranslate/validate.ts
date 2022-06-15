@@ -42,73 +42,103 @@ const validateTranslationBody = (
     categoriesGroupsData: [],
   }
 
-  for (const entity in translationData) {
-    switch (entity) {
+  for (const translationType in translationData) {
+    switch (translationType) {
       case 'categories':
-        for (const category of translationData[entity]) {
-          const entityValidation = CategorySchema.validate(category)
+        for (const category of translationData[translationType]) {
+          const translationTypeValidation = CategorySchema.validate(category)
 
-          updateValidationResults(entity, entityValidation, validationResults)
+          updateValidationResults(
+            translationType,
+            translationTypeValidation,
+            validationResults
+          )
         }
 
         break
 
       case 'brands':
-        for (const brand of translationData[entity]) {
-          const entityValidation = BrandSchema.validate(brand)
+        for (const brand of translationData[translationType]) {
+          const translationTypeValidation = BrandSchema.validate(brand)
 
-          updateValidationResults(entity, entityValidation, validationResults)
+          updateValidationResults(
+            translationType,
+            translationTypeValidation,
+            validationResults
+          )
         }
 
         break
 
       case 'products':
-        for (const product of translationData[entity]) {
-          const entityValidation = ProductSchema.validate(product)
+        for (const product of translationData[translationType]) {
+          const translationTypeValidation = ProductSchema.validate(product)
 
-          updateValidationResults(entity, entityValidation, validationResults)
+          updateValidationResults(
+            translationType,
+            translationTypeValidation,
+            validationResults
+          )
         }
 
         break
 
       case 'skus':
-        for (const sku of translationData[entity]) {
-          const entityValidation = SkuSchema.validate(sku)
+        for (const sku of translationData[translationType]) {
+          const translationTypeValidation = SkuSchema.validate(sku)
 
-          updateValidationResults(entity, entityValidation, validationResults)
+          updateValidationResults(
+            translationType,
+            translationTypeValidation,
+            validationResults
+          )
         }
 
         break
 
       case 'skusProductsSpecifications':
-        for (const skusProductsSpecification of translationData[entity]) {
-          const entityValidation = SkuProductSpecificationSchema.validate(
+        for (const skusProductsSpecification of translationData[
+          translationType
+        ]) {
+          const translationTypeValidation = SkuProductSpecificationSchema.validate(
             skusProductsSpecification
           )
 
-          updateValidationResults(entity, entityValidation, validationResults)
+          updateValidationResults(
+            translationType,
+            translationTypeValidation,
+            validationResults
+          )
         }
 
         break
 
       case 'specificationValuesData':
-        for (const specificationValueData of translationData[entity]) {
-          const entityValidation = CategoryGroupSchems.validate(
+        for (const specificationValueData of translationData[translationType]) {
+          const translationTypeValidation = CategoryGroupSchems.validate(
             specificationValueData
           )
 
-          updateValidationResults(entity, entityValidation, validationResults)
+          updateValidationResults(
+            translationType,
+            translationTypeValidation,
+            validationResults
+          )
         }
 
         break
 
       case 'categoriesGroupsData':
-        for (const categoriesGroupsData of translationData[entity]) {
-          const entityValidation = CategoryGroupSchems.validate(
+        for (const categoriesGroupsData of translationData[translationType]) {
+          const translationTypeValidation = CategoryGroupSchems.validate(
             categoriesGroupsData
           )
 
-          updateValidationResults(entity, entityValidation, validationResults)
+          updateValidationResults(
+            translationType,
+            translationTypeValidation,
+            validationResults
+          )
         }
 
         break
