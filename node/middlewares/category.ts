@@ -1,17 +1,18 @@
-import { json } from 'co-body'
-
 export async function categoryTranslation(
   ctx: Context,
   next: () => Promise<unknown>
 ) {
   const {
     clients: { catalogGraphQl },
-    req,
+    state,
   } = ctx
 
-  const requestData: CategoryTranslationData = await json(req)
+  const { authorizationToken, translationData } = state
 
-  const response = await catalogGraphQl.categoryTranslation(requestData)
+  const response = await catalogGraphQl.categoryTranslation(
+    authorizationToken,
+    translationData
+  )
 
   ctx.status = 202
   ctx.body = response
@@ -25,12 +26,15 @@ export async function categoryGroupTranslation(
 ) {
   const {
     clients: { catalogGraphQl },
-    req,
+    state,
   } = ctx
 
-  const requestData: CategoryGroupData = await json(req)
+  const { authorizationToken, translationData } = state
 
-  const response = await catalogGraphQl.categoryGroupTranslation(requestData)
+  const response = await catalogGraphQl.categoryGroupTranslation(
+    authorizationToken,
+    translationData
+  )
 
   ctx.status = 202
   ctx.body = response

@@ -155,30 +155,51 @@ export async function validateBulkBody(
   ctx: Context,
   next: () => Promise<unknown>
 ) {
-  const translationData: BulkTranslationData = await json(ctx.req)
+  const {
+    header: { authorizationtoken, appkey, apptoken },
+    req,
+    clients: { authClient },
+  } = ctx
 
-  const { error: emailError } = notificationEmailValidation.validate(
-    translationData
+  console.log(authClient)
+
+  const authorizationToken = await authClient.validateAppKeyAndToken(
+    authorizationtoken,
+    appkey,
+    apptoken
   )
 
-  if (emailError) {
-    ctx.status = 422
-    ctx.body = emailError.details.map((detail) => detail.message)
+  if (authorizationToken) {
+    ctx.state.authorizationToken = authorizationToken
 
-    return
-  }
+    const translationData: BulkTranslationData = await json(req)
 
-  const validationResult = validateTranslationBody(translationData)
+    const { error: emailError } = notificationEmailValidation.validate(
+      translationData
+    )
 
-  if (validationResult.errors) {
-    ctx.status = 422
-    ctx.body = validationResult
+    if (emailError) {
+      ctx.status = 422
+      ctx.body = emailError.details.map((detail) => detail.message)
+
+      return
+    }
+
+    const validationResult = validateTranslationBody(translationData)
+
+    if (validationResult.errors) {
+      ctx.status = 422
+      ctx.body = validationResult
+    } else {
+      ctx.state.bulkTranslationData = translationData
+      ctx.state.notificationEmail = translationData.notificationEmail
+      ctx.body =
+        'Your translations are being processed. You will receive an email with the details in the email account specified in the request.'
+      ctx.status = 200
+      next()
+    }
   } else {
-    ctx.state.translationData = translationData
-    ctx.state.notificationEmail = translationData.notificationEmail
-    ctx.body =
-      'Your translations are being processed. You will receive an email with the details in the email account specified in the request.'
-    ctx.status = 200
-    next()
+    ctx.status = 402
+    ctx.body = 'Authentication failed'
   }
 }

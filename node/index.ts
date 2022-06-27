@@ -12,6 +12,7 @@ import {
   bulkTranslate,
   validateBulkBody,
   sendEmail,
+  validateAuthToken,
 } from './middlewares'
 import { createEmailTemplate } from './events/createEmailTemplate'
 
@@ -39,9 +40,11 @@ declare global {
 
   interface State extends RecorderState {
     code: number
-    translationData: BulkTranslationData
+    authorizationToken: string
+    bulkTranslationData: BulkTranslationData
     notificationEmail: string | undefined
     translationResponse: TranslationsDataResponse
+    translationData: TranslatableData
   }
 }
 
@@ -56,22 +59,22 @@ export default new Service({
       POST: [validateBulkBody, bulkTranslate, sendEmail],
     }),
     categoryTranslation: method({
-      POST: [categoryTranslation],
+      POST: [validateAuthToken, categoryTranslation],
     }),
     brandTranslation: method({
-      POST: [brandTranslation],
+      POST: [validateAuthToken, brandTranslation],
     }),
     productTranslation: method({
-      POST: [productTranslation],
+      POST: [validateAuthToken, productTranslation],
     }),
     skuTranslation: method({
-      POST: [skuTranslation],
+      POST: [validateAuthToken, skuTranslation],
     }),
     skuSpecificationTranslation: method({
-      POST: [skuProductSpecificationTranslation],
+      POST: [validateAuthToken, skuProductSpecificationTranslation],
     }),
     specificationValuesTranslation: method({
-      POST: [specificationValuesTranslation],
+      POST: [validateAuthToken, specificationValuesTranslation],
     }),
   },
 })

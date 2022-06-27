@@ -76,6 +76,17 @@ interface TranslationResponse {
   translateCategory: boolean
 }
 
+interface BulkTranslationData {
+  notificationEmail?: string
+  categories: CategoryTranslationData[]
+  brands: BrandData[]
+  products: ProductData[]
+  skus: SKUData[]
+  skusProductsSpecifications: SKUProductSpecificationData[]
+  specificationValuesData: SpecificationValuesData[]
+  categoriesGroupsData: CategoryGroupData[]
+}
+
 type TranslatableData =
   | CategoryTranslationData
   | BrandData

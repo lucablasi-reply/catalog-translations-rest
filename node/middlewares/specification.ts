@@ -1,18 +1,17 @@
-import { json } from 'co-body'
-
 export async function skuProductSpecificationTranslation(
   ctx: Context,
   next: () => Promise<unknown>
 ) {
   const {
     clients: { catalogGraphQl },
-    req,
+    state,
   } = ctx
 
-  const requestData: SKUProductSpecificationData = await json(req)
+  const { authorizationToken, translationData } = state
 
   const response = await catalogGraphQl.skuProductSpecificationTranslation(
-    requestData
+    authorizationToken,
+    translationData
   )
 
   ctx.status = 202
@@ -27,13 +26,14 @@ export async function specificationValuesTranslation(
 ) {
   const {
     clients: { catalogGraphQl },
-    req,
+    state,
   } = ctx
 
-  const requestData: SpecificationValuesData = await json(req)
+  const { authorizationToken, translationData } = state
 
   const response = await catalogGraphQl.specificationValuesTranslation(
-    requestData
+    authorizationToken,
+    translationData
   )
 
   ctx.status = 202

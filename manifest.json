@@ -61,6 +61,13 @@
     },
     {
       "name": "vtex.file-manager:file-manager-read-write"
+    },
+    {
+      "name": "outbound-access",
+      "attrs": {
+        "host": "vtexid.vtexcommercestable.com.br",
+        "path": "/api/vtexid/apptoken/login"
+      }
     }
   ],
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"

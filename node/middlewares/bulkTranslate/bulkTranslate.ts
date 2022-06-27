@@ -4,8 +4,12 @@
 import throttledQueue from 'throttled-queue'
 
 const entityTranslator = async (
+  authToken: string,
   translationData: TranslatableData[],
-  translationMethod: any,
+  translationMethod: (
+    authToken: string,
+    data: TranslatableData
+  ) => Promise<any>,
   throttle: Throttle
 ): Promise<EntityTranslationData> => {
   let translated = 0
@@ -14,7 +18,7 @@ const entityTranslator = async (
   for (const data of translationData) {
     await throttle(async () => {
       try {
-        await translationMethod(data)
+        await translationMethod(authToken, data)
         translated += 1
       } catch (error) {
         translationFailures.push(data)
@@ -55,7 +59,7 @@ export async function bulkTranslate(
         categoryGroupTranslation,
       },
     },
-    state: { translationData },
+    state: { bulkTranslationData, authorizationToken },
   } = ctx
 
   const requestPerInterval = 10
@@ -77,11 +81,12 @@ export async function bulkTranslate(
     },
   }
 
-  for (const translationType in translationData) {
+  for (const translationType in bulkTranslationData) {
     switch (translationType) {
       case 'categories': {
         const entityTranslationResponse: EntityTranslationData = await entityTranslator(
-          translationData[translationType],
+          authorizationToken,
+          bulkTranslationData[translationType],
           categoryTranslation,
           throttle
         )
@@ -97,7 +102,8 @@ export async function bulkTranslate(
 
       case 'brands': {
         const entityTranslationResponse: EntityTranslationData = await entityTranslator(
-          translationData[translationType],
+          authorizationToken,
+          bulkTranslationData[translationType],
           brandTranslation,
           throttle
         )
@@ -113,7 +119,8 @@ export async function bulkTranslate(
 
       case 'products': {
         const entityTranslationResponse: EntityTranslationData = await entityTranslator(
-          translationData[translationType],
+          authorizationToken,
+          bulkTranslationData[translationType],
           productTranslation,
           throttle
         )
@@ -129,7 +136,8 @@ export async function bulkTranslate(
 
       case 'skus': {
         const entityTranslationResponse: EntityTranslationData = await entityTranslator(
-          translationData[translationType],
+          authorizationToken,
+          bulkTranslationData[translationType],
           skuTranslation,
           throttle
         )
@@ -145,7 +153,8 @@ export async function bulkTranslate(
 
       case 'skusProductsSpecifications': {
         const entityTranslationResponse: EntityTranslationData = await entityTranslator(
-          translationData[translationType],
+          authorizationToken,
+          bulkTranslationData[translationType],
           skuProductSpecificationTranslation,
           throttle
         )
@@ -161,7 +170,8 @@ export async function bulkTranslate(
 
       case 'categoriesGroupsData': {
         const entityTranslationResponse: EntityTranslationData = await entityTranslator(
-          translationData[translationType],
+          authorizationToken,
+          bulkTranslationData[translationType],
           categoryGroupTranslation,
           throttle
         )

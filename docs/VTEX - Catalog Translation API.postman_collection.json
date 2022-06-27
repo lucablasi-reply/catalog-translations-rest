@@ -12,13 +12,30 @@
         "method": "POST",
         "header": [
           {
-            "key": "{{AuthCookieProp}}",
-            "value": "{{VTEX-AuthCookie}}",
-            "type": "text"
+            "key": "",
+            "value": "",
+            "type": "text",
+            "disabled": true
           },
           {
             "key": "Content-Type",
             "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "authorizationToken",
+            "value": "eyJhbGciOiJFUzI1NiIsImtpZCI6IkMxMUQzODk3MkM2RkEzODdBQkZGNTJCMjg0NDE1QUU1NTlCRTU1MjYiLCJ0eXAiOiJqd3QifQ.eyJzdWIiOiJzYW50aWFnby5jbHVzZWxsYXNAdnRleC5jb20uYnIiLCJhY2NvdW50IjoidnRleHNwYWluIiwiYXVkaWVuY2UiOiJhZG1pbiIsInNlc3MiOiJkM2E5NDRlOS1mODM5LTRhNzgtOTA4Yy1hMThlZGJiMTAzNTQiLCJleHAiOjE2NTYwNzMwMDQsInVzZXJJZCI6IjljODRjMTdlLWM2YWQtNGEyNC1iYjkzLTI3YjEwMjQzZDc3ZiIsImlhdCI6MTY1NTk4NjYwNCwiaXNzIjoidG9rZW4tZW1pdHRlciIsImp0aSI6IjgwOTZhYTFhLThlY2MtNGI3ZC05NTAxLWIzNzkwZmY3MWQ4MyJ9.M38921ridASbete1TyG3-96PQgSwite1TsAtT9vMBE7jxFi6Qrq0T5RsHKetBTxfYQSKiEmFLzF79fsY_HMqdw",
+            "type": "text",
+            "disabled": true
+          },
+          {
+            "key": "AppKey",
+            "value": "{{AccesKey}}",
+            "type": "text"
+          },
+          {
+            "key": "AppToken",
+            "value": "{{SecretToken}}",
             "type": "text"
           }
         ],
@@ -46,19 +63,36 @@
         "method": "POST",
         "header": [
           {
-            "key": "VtexIdclientAutCookie",
-            "value": "{{VTEX-AuthCookie}}",
-            "type": "text"
+            "key": "",
+            "value": "",
+            "type": "text",
+            "disabled": true
           },
           {
             "key": "Content-Type",
             "value": "application/json",
             "type": "text"
+          },
+          {
+            "key": "authorizationToken",
+            "value": "eyJhbGciOiJFUzI1NiIsImtpZCI6IkMxMUQzODk3MkM2RkEzODdBQkZGNTJCMjg0NDE1QUU1NTlCRTU1MjYiLCJ0eXAiOiJqd3QifQ.eyJzdWIiOiJzYW50aWFnby5jbHVzZWxsYXNAdnRleC5jb20uYnIiLCJhY2NvdW50IjoidnRleHNwYWluIiwiYXVkaWVuY2UiOiJhZG1pbiIsInNlc3MiOiJkM2E5NDRlOS1mODM5LTRhNzgtOTA4Yy1hMThlZGJiMTAzNTQiLCJleHAiOjE2NTYwNzMwMDQsInVzZXJJZCI6IjljODRjMTdlLWM2YWQtNGEyNC1iYjkzLTI3YjEwMjQzZDc3ZiIsImlhdCI6MTY1NTk4NjYwNCwiaXNzIjoidG9rZW4tZW1pdHRlciIsImp0aSI6IjgwOTZhYTFhLThlY2MtNGI3ZC05NTAxLWIzNzkwZmY3MWQ4MyJ9.M38921ridASbete1TyG3-96PQgSwite1TsAtT9vMBE7jxFi6Qrq0T5RsHKetBTxfYQSKiEmFLzF79fsY_HMqdw",
+            "type": "text",
+            "disabled": true
+          },
+          {
+            "key": "AppKey",
+            "value": "{{AccesKey}}",
+            "type": "text"
+          },
+          {
+            "key": "AppToken",
+            "value": "{{SecretToken}}",
+            "type": "text"
           }
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n    \"args\": {\n        \"id\": \"\",\n        \"name\": \"\",\n        \"text\": \"\",\n        \"siteTitle\": \"\",\n        \"keywords\": \"\"\n    },\n    \"locale\": \"\"\n}"
+          "raw": "{\n    \"args\": {\n        \"id\": \"2000037\",\n        \"name\": \"Marca Traduccion It\",\n        \"text\": \"Marca Traduccion It\",\n        \"siteTitle\": \"Marca Traduccion It\",\n        \"keywords\": \"Marca Traduccion It\"\n    },\n    \"locale\": \"it-IT\"\n}"
         },
         "url": {
           "raw": "https://{{vtex-account}}.myvtex.com/v0/catalog-translation/brand",
@@ -82,13 +116,30 @@
         "method": "POST",
         "header": [
           {
-            "key": "VtexIdclientAutCookie",
-            "value": "{{VTEX-AuthCookie}}",
-            "type": "text"
+            "key": "",
+            "value": "",
+            "type": "text",
+            "disabled": true
           },
           {
             "key": "Content-Type",
             "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "authorizationToken",
+            "value": "eyJhbGciOiJFUzI1NiIsImtpZCI6IkMxMUQzODk3MkM2RkEzODdBQkZGNTJCMjg0NDE1QUU1NTlCRTU1MjYiLCJ0eXAiOiJqd3QifQ.eyJzdWIiOiJzYW50aWFnby5jbHVzZWxsYXNAdnRleC5jb20uYnIiLCJhY2NvdW50IjoidnRleHNwYWluIiwiYXVkaWVuY2UiOiJhZG1pbiIsInNlc3MiOiJkM2E5NDRlOS1mODM5LTRhNzgtOTA4Yy1hMThlZGJiMTAzNTQiLCJleHAiOjE2NTYwNzMwMDQsInVzZXJJZCI6IjljODRjMTdlLWM2YWQtNGEyNC1iYjkzLTI3YjEwMjQzZDc3ZiIsImlhdCI6MTY1NTk4NjYwNCwiaXNzIjoidG9rZW4tZW1pdHRlciIsImp0aSI6IjgwOTZhYTFhLThlY2MtNGI3ZC05NTAxLWIzNzkwZmY3MWQ4MyJ9.M38921ridASbete1TyG3-96PQgSwite1TsAtT9vMBE7jxFi6Qrq0T5RsHKetBTxfYQSKiEmFLzF79fsY_HMqdw",
+            "type": "text",
+            "disabled": true
+          },
+          {
+            "key": "AppKey",
+            "value": "{{AccesKey}}",
+            "type": "text"
+          },
+          {
+            "key": "AppToken",
+            "value": "{{SecretToken}}",
             "type": "text"
           }
         ],
@@ -116,13 +167,30 @@
         "method": "POST",
         "header": [
           {
-            "key": "VtexIdclientAutCookie",
-            "value": "{{VTEX-AuthCookie}}",
-            "type": "text"
+            "key": "",
+            "value": "",
+            "type": "text",
+            "disabled": true
           },
           {
             "key": "Content-Type",
             "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "authorizationToken",
+            "value": "eyJhbGciOiJFUzI1NiIsImtpZCI6IkMxMUQzODk3MkM2RkEzODdBQkZGNTJCMjg0NDE1QUU1NTlCRTU1MjYiLCJ0eXAiOiJqd3QifQ.eyJzdWIiOiJzYW50aWFnby5jbHVzZWxsYXNAdnRleC5jb20uYnIiLCJhY2NvdW50IjoidnRleHNwYWluIiwiYXVkaWVuY2UiOiJhZG1pbiIsInNlc3MiOiJkM2E5NDRlOS1mODM5LTRhNzgtOTA4Yy1hMThlZGJiMTAzNTQiLCJleHAiOjE2NTYwNzMwMDQsInVzZXJJZCI6IjljODRjMTdlLWM2YWQtNGEyNC1iYjkzLTI3YjEwMjQzZDc3ZiIsImlhdCI6MTY1NTk4NjYwNCwiaXNzIjoidG9rZW4tZW1pdHRlciIsImp0aSI6IjgwOTZhYTFhLThlY2MtNGI3ZC05NTAxLWIzNzkwZmY3MWQ4MyJ9.M38921ridASbete1TyG3-96PQgSwite1TsAtT9vMBE7jxFi6Qrq0T5RsHKetBTxfYQSKiEmFLzF79fsY_HMqdw",
+            "type": "text",
+            "disabled": true
+          },
+          {
+            "key": "AppKey",
+            "value": "{{AccesKey}}",
+            "type": "text"
+          },
+          {
+            "key": "AppToken",
+            "value": "{{SecretToken}}",
             "type": "text"
           }
         ],
@@ -150,13 +218,30 @@
         "method": "POST",
         "header": [
           {
-            "key": "VtexIdclientAutCookie",
-            "value": "{{VTEX-AuthCookie}}",
-            "type": "text"
+            "key": "",
+            "value": "",
+            "type": "text",
+            "disabled": true
           },
           {
             "key": "Content-Type",
             "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "authorizationToken",
+            "value": "eyJhbGciOiJFUzI1NiIsImtpZCI6IkMxMUQzODk3MkM2RkEzODdBQkZGNTJCMjg0NDE1QUU1NTlCRTU1MjYiLCJ0eXAiOiJqd3QifQ.eyJzdWIiOiJzYW50aWFnby5jbHVzZWxsYXNAdnRleC5jb20uYnIiLCJhY2NvdW50IjoidnRleHNwYWluIiwiYXVkaWVuY2UiOiJhZG1pbiIsInNlc3MiOiJkM2E5NDRlOS1mODM5LTRhNzgtOTA4Yy1hMThlZGJiMTAzNTQiLCJleHAiOjE2NTYwNzMwMDQsInVzZXJJZCI6IjljODRjMTdlLWM2YWQtNGEyNC1iYjkzLTI3YjEwMjQzZDc3ZiIsImlhdCI6MTY1NTk4NjYwNCwiaXNzIjoidG9rZW4tZW1pdHRlciIsImp0aSI6IjgwOTZhYTFhLThlY2MtNGI3ZC05NTAxLWIzNzkwZmY3MWQ4MyJ9.M38921ridASbete1TyG3-96PQgSwite1TsAtT9vMBE7jxFi6Qrq0T5RsHKetBTxfYQSKiEmFLzF79fsY_HMqdw",
+            "type": "text",
+            "disabled": true
+          },
+          {
+            "key": "AppKey",
+            "value": "{{AccesKey}}",
+            "type": "text"
+          },
+          {
+            "key": "AppToken",
+            "value": "{{SecretToken}}",
             "type": "text"
           }
         ],
@@ -184,13 +269,30 @@
         "method": "POST",
         "header": [
           {
-            "key": "VtexIdclientAutCookie",
-            "value": "{{VTEX-AuthCookie}}",
-            "type": "text"
+            "key": "",
+            "value": "",
+            "type": "text",
+            "disabled": true
           },
           {
             "key": "Content-Type",
             "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "authorizationToken",
+            "value": "eyJhbGciOiJFUzI1NiIsImtpZCI6IkMxMUQzODk3MkM2RkEzODdBQkZGNTJCMjg0NDE1QUU1NTlCRTU1MjYiLCJ0eXAiOiJqd3QifQ.eyJzdWIiOiJzYW50aWFnby5jbHVzZWxsYXNAdnRleC5jb20uYnIiLCJhY2NvdW50IjoidnRleHNwYWluIiwiYXVkaWVuY2UiOiJhZG1pbiIsInNlc3MiOiJkM2E5NDRlOS1mODM5LTRhNzgtOTA4Yy1hMThlZGJiMTAzNTQiLCJleHAiOjE2NTYwNzMwMDQsInVzZXJJZCI6IjljODRjMTdlLWM2YWQtNGEyNC1iYjkzLTI3YjEwMjQzZDc3ZiIsImlhdCI6MTY1NTk4NjYwNCwiaXNzIjoidG9rZW4tZW1pdHRlciIsImp0aSI6IjgwOTZhYTFhLThlY2MtNGI3ZC05NTAxLWIzNzkwZmY3MWQ4MyJ9.M38921ridASbete1TyG3-96PQgSwite1TsAtT9vMBE7jxFi6Qrq0T5RsHKetBTxfYQSKiEmFLzF79fsY_HMqdw",
+            "type": "text",
+            "disabled": true
+          },
+          {
+            "key": "AppKey",
+            "value": "{{AccesKey}}",
+            "type": "text"
+          },
+          {
+            "key": "AppToken",
+            "value": "{{SecretToken}}",
             "type": "text"
           }
         ],
@@ -218,13 +320,30 @@
         "method": "POST",
         "header": [
           {
-            "key": "VtexIdclientAutCookie",
-            "value": "{{VTEX-AuthCookie}}",
-            "type": "text"
+            "key": "",
+            "value": "",
+            "type": "text",
+            "disabled": true
           },
           {
             "key": "Content-Type",
             "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "authorizationToken",
+            "value": "eyJhbGciOiJFUzI1NiIsImtpZCI6IkMxMUQzODk3MkM2RkEzODdBQkZGNTJCMjg0NDE1QUU1NTlCRTU1MjYiLCJ0eXAiOiJqd3QifQ.eyJzdWIiOiJzYW50aWFnby5jbHVzZWxsYXNAdnRleC5jb20uYnIiLCJhY2NvdW50IjoidnRleHNwYWluIiwiYXVkaWVuY2UiOiJhZG1pbiIsInNlc3MiOiJkM2E5NDRlOS1mODM5LTRhNzgtOTA4Yy1hMThlZGJiMTAzNTQiLCJleHAiOjE2NTYwNzMwMDQsInVzZXJJZCI6IjljODRjMTdlLWM2YWQtNGEyNC1iYjkzLTI3YjEwMjQzZDc3ZiIsImlhdCI6MTY1NTk4NjYwNCwiaXNzIjoidG9rZW4tZW1pdHRlciIsImp0aSI6IjgwOTZhYTFhLThlY2MtNGI3ZC05NTAxLWIzNzkwZmY3MWQ4MyJ9.M38921ridASbete1TyG3-96PQgSwite1TsAtT9vMBE7jxFi6Qrq0T5RsHKetBTxfYQSKiEmFLzF79fsY_HMqdw",
+            "type": "text",
+            "disabled": true
+          },
+          {
+            "key": "AppKey",
+            "value": "{{AccesKey}}",
+            "type": "text"
+          },
+          {
+            "key": "AppToken",
+            "value": "{{SecretToken}}",
             "type": "text"
           }
         ],
@@ -252,14 +371,36 @@
         "method": "POST",
         "header": [
           {
-            "key": "VtexIdclientAutCookie",
-            "value": "{{VTEX-AuthCookie}}",
+            "key": "",
+            "value": "",
+            "type": "text",
+            "disabled": true
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "authorizationToken",
+            "value": "eyJhbGciOiJFUzI1NiIsImtpZCI6IkMxMUQzODk3MkM2RkEzODdBQkZGNTJCMjg0NDE1QUU1NTlCRTU1MjYiLCJ0eXAiOiJqd3QifQ.eyJzdWIiOiJzYW50aWFnby5jbHVzZWxsYXNAdnRleC5jb20uYnIiLCJhY2NvdW50IjoidnRleHNwYWluIiwiYXVkaWVuY2UiOiJhZG1pbiIsInNlc3MiOiJkM2E5NDRlOS1mODM5LTRhNzgtOTA4Yy1hMThlZGJiMTAzNTQiLCJleHAiOjE2NTYwNzMwMDQsInVzZXJJZCI6IjljODRjMTdlLWM2YWQtNGEyNC1iYjkzLTI3YjEwMjQzZDc3ZiIsImlhdCI6MTY1NTk4NjYwNCwiaXNzIjoidG9rZW4tZW1pdHRlciIsImp0aSI6IjgwOTZhYTFhLThlY2MtNGI3ZC05NTAxLWIzNzkwZmY3MWQ4MyJ9.M38921ridASbete1TyG3-96PQgSwite1TsAtT9vMBE7jxFi6Qrq0T5RsHKetBTxfYQSKiEmFLzF79fsY_HMqdw",
+            "type": "text",
+            "disabled": true
+          },
+          {
+            "key": "AppKey",
+            "value": "{{AccesKey}}",
+            "type": "text"
+          },
+          {
+            "key": "AppToken",
+            "value": "{{SecretToken}}",
             "type": "text"
           }
         ],
         "body": {
           "mode": "raw",
-          "raw": "{   \n    \"notificationEmail\": \"\",\n    \"categories\": [],\n    \"brands\": [],\n    \"products\": [],\n    \"skus\": [],\n    \"skusProductsSpecifications\": [],\n    \"specificationValuesData\": [],\n    \"categoriesGroupsData\": []\n}",
+          "raw": "{\n    \"notificationEmail\": \"\",\n    \"categories\": [],\n    \"brands\": [],\n    \"products\": [],\n    \"skus\": [],\n    \"skusProductsSpecifications\": [],\n    \"specificationValuesData\": [],\n    \"categoriesGroupsData\": []\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -314,6 +455,16 @@
     },
     {
       "key": "AccesKey",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "test",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "AuthToken",
       "value": "",
       "type": "string"
     }

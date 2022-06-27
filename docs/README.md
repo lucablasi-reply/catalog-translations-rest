@@ -6,7 +6,22 @@ You can download the Postman Collection from this ([link](https://github.com/vte
 
 Check ([this](https://developers.vtex.com/vtex-developer-docs/docs/catalog-internationalization)) documentation for more information.
 
-### Routes
+## Routes
+
+### Authentication
+
+Each route must include in the headers either:
+
+| **Header** | **Type** |
+| ---------- | -------- |
+| `AppKey`   | string   |
+| `AppToken` | string   |
+
+Or:
+
+| **Header**           | **Type** | **Description**                     |
+| -------------------- | -------- | ----------------------------------- |
+| `authorizationToken` | string   | VTEX Auth Cookie for authorization. |
 
 Every translation entity must have this two properties:
 

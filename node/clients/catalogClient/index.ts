@@ -41,12 +41,12 @@ export class CatalogGraphQL extends AppGraphQLClient {
       ...opts,
       headers: {
         ...opts?.headers,
-        cookie: `VtexIdclientAutCookie=${ctx.authToken}`,
       },
     })
   }
 
   private translationMutation = async (
+    authToken: string,
     query: string,
     variables:
       | CategoryTranslationData
@@ -59,10 +59,17 @@ export class CatalogGraphQL extends AppGraphQLClient {
   ): Promise<GraphQLResponse<Serializable>> => {
     return (
       this.graphql
-        .mutate({
-          mutate: query,
-          variables,
-        })
+        .mutate(
+          {
+            mutate: query,
+            variables,
+          },
+          {
+            headers: {
+              VtexIdclientAutCookie: authToken,
+            },
+          }
+        )
         .then(
           throwOnGraphQLErrors('Error updating data from vtex.catalog-graphql')
         )
@@ -74,45 +81,63 @@ export class CatalogGraphQL extends AppGraphQLClient {
   }
 
   public categoryTranslation = async (
-    categoryData: CategoryTranslationData
+    authToken: string,
+    categoryData: TranslatableData
   ): Promise<any> =>
-    this.translationMutation(CATEGORY_TRANSLATIONS_MUTATION, categoryData)
+    this.translationMutation(
+      authToken,
+      CATEGORY_TRANSLATIONS_MUTATION,
+      categoryData
+    )
 
   public brandTranslation = async (
-    brandData: BrandData
+    authToken: string,
+    brandData: TranslatableData
   ): Promise<GraphQLResponse<Serializable>> =>
-    this.translationMutation(BRAND_TRANSLATION_MUTATION, brandData)
+    this.translationMutation(authToken, BRAND_TRANSLATION_MUTATION, brandData)
 
   public productTranslation = async (
-    productData: ProductData
-  ): Promise<GraphQLResponse<Serializable>> =>
-    this.translationMutation(PRODUCT_TRANSLATION_MUTATION, productData)
-
-  public skuTranslation = async (
-    skuData: SKUData
-  ): Promise<GraphQLResponse<Serializable>> =>
-    this.translationMutation(SKU_TRANSLATION_MUTATION, skuData)
-
-  public skuProductSpecificationTranslation = async (
-    specificationData: SKUProductSpecificationData
+    authToken: string,
+    productData: TranslatableData
   ): Promise<GraphQLResponse<Serializable>> =>
     this.translationMutation(
+      authToken,
+      PRODUCT_TRANSLATION_MUTATION,
+      productData
+    )
+
+  public skuTranslation = async (
+    authToken: string,
+    skuData: TranslatableData
+  ): Promise<GraphQLResponse<Serializable>> =>
+    this.translationMutation(authToken, SKU_TRANSLATION_MUTATION, skuData)
+
+  public skuProductSpecificationTranslation = async (
+    authToken: string,
+    specificationData: TranslatableData
+  ): Promise<GraphQLResponse<Serializable>> =>
+    this.translationMutation(
+      authToken,
       SKU_PRODUCT_SPCIFICATION_TRANSLATION_MUTATION,
       specificationData
     )
 
   public specificationValuesTranslation = async (
-    specificationData: SpecificationValuesData
+    authToken: string,
+    specificationData: TranslatableData
   ): Promise<GraphQLResponse<Serializable>> =>
     this.translationMutation(
+      authToken,
       SPECIFICATION_VALUES_TRANSLATION_MUTATION,
       specificationData
     )
 
   public categoryGroupTranslation = async (
-    categoryGroupData: CategoryGroupData
+    authToken: string,
+    categoryGroupData: TranslatableData
   ): Promise<GraphQLResponse<Serializable>> =>
     this.translationMutation(
+      authToken,
       CATEGORY_GROUP_TRANSLATION_MUTATION,
       categoryGroupData
     )

@@ -50,14 +50,3 @@ type TranslatablePropTypes =
   | 'categoriesGroupsData'
   | 'skusProductsSpecifications'
   | 'specificationValuesData'
-
-interface BulkTranslationData {
-  notificationEmail?: string
-  categories: CategoryTranslationData[]
-  brands: BrandData[]
-  products: ProductData[]
-  skus: SKUData[]
-  skusProductsSpecifications: SKUProductSpecificationData[]
-  specificationValuesData: SpecificationValuesData[]
-  categoriesGroupsData: CategoryGroupData[]
-}
