@@ -1,14 +1,52 @@
 {
   "memory": 256,
   "ttl": 10,
-  "timeout": 2,
+  "timeout": 20,
   "minReplicas": 2,
   "maxReplicas": 4,
   "workers": 1,
   "routes": {
-    "status": {
-      "path": "/_v/status/:code",
+    "bulkTranslate": {
+      "path": "/v0/catalog-translation/bulk-translate",
       "public": true
+    },
+    "categoryTranslation": {
+      "path": "/v0/catalog-translation/category",
+      "public": true
+    },
+    "brandTranslation": {
+      "path": "/v0/catalog-translation/brand",
+      "public": true
+    },
+    "productTranslation": {
+      "path": "/v0/catalog-translation/product",
+      "public": true
+    },
+    "skuTranslation": {
+      "path": "/v0/catalog-translation/sku",
+      "public": true
+    },
+    "skuSpecificationTranslation": {
+      "path": "/v0/catalog-translation/sku-specification",
+      "public": true
+    },
+    "specificationValuesTranslation": {
+      "path": "/v0/catalog-translation/specification-values",
+      "public": true
+    },
+    "categoryGroupTranslation": {
+      "path": "/v0/catalog-translation/category-group",
+      "public": true
+    }
+  },
+  "events": {
+    "onAppInstalledEvent": {
+      "sender": "apps",
+      "keys": ["setup"]
+    },
+    "onAppLinked": {
+      "sender": "apps",
+      "keys": ["linked", "relinked"]
     }
   }
 }

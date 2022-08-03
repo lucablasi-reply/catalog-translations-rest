@@ -1,127 +1,237 @@
+# Catalog Translations Rest
 
+Rest API that allows both the translation of each entity of the catalog in particular, as well as the massive translation of them.
 
-# Service Example
+You can download the Postman Collection from this ([link](https://github.com/vtex-apps/catalog-translations-rest/blob/development/docs/VTEX%20-%20Catalog%20Translation%20API.postman_collection.json)).
 
-A reference app implementing a VTEX IO service with HTTP route handlers.
+Check ([this](https://developers.vtex.com/vtex-developer-docs/docs/catalog-internationalization)) documentation for more information.
 
-![Service Example Architecture](https://user-images.githubusercontent.com/18706156/77381360-72489680-6d5c-11ea-9da8-f4f03b6c5f4c.jpg)
+## Routes
 
-We use [**KoaJS**](https://koajs.com/) as the web framework, so you might want to get into that
+### Authentication
 
-We also use the [**node-vtex-api**](https://github.com/vtex/node-vtex-api), a VTEX set of utilities for Node services. You can import this package using NPM from `@vtex/api` (already imported on this project)
+Each route must include in the headers either:
 
-- Start from `node/index.ts` and follow the comments and imports :)
+| **Header** | **Type** |
+| ---------- | -------- |
+| `AppKey`   | string   |
+| `AppToken` | string   |
 
-## Recipes
+Or:
 
-### Defining routes on _service.json_ 
+| **Header**           | **Type** | **Description**                     |
+| -------------------- | -------- | ----------------------------------- |
+| `authorizationToken` | string   | VTEX Auth Cookie for authorization. |
+
+Every translation entity must have this two properties:
+
+| **Property** | **Type** | **Description**                                  |
+| ------------ | -------- | ------------------------------------------------ |
+| `args`       | object   | Translation information for the specific entity. |
+| `locale`     | string   | Translation language (ex: 'fr-FR').              |
+
+Example:
+
+```json
+    {
+        "args": {
+          {...}
+        },
+        "name": "{locale}"
+    }
+```
+
+#### Category
+
+`POST`
+
+`https://{environment}--{accountName}.myvtex.com/v0/catalog-translation/category`
+
+| **args**    | **Type** |
+| ----------- | -------- |
+| id          | string   |
+| name        | string   |
+| title       | string   |
+| description | string   |
+| keywords    | [string] |
+| linkId      | string   |
+
 ```json
 {
-  "memory": 256,
-  "ttl": 10,
-  "timeout": 2,
-  "minReplicas": 2,
-  "maxReplicas": 4,
-  "routes": {
-    "status": {
-      "path": "/_v/status/:code",
-      "public": true
-    }
-  }
+  "args": {
+    "id": "3",
+    "name": "Elêtronicos",
+    "title": "Casa - Elêtronicos",
+    "description": "Esta é a descrição da categoria Eletrônicos",
+    "keywords": ["eletronicos", "utensílios"],
+    "linkId": "eletronicos"
+  },
+  "locale": "pt-BR"
 }
 ```
 
-The `service.json` file that sits on the root of the `node` folder holds informations about this service, like the maximum timeout and number of replicas, what might be discontinued on the future, but also **sets its routes**. 
+#### Brand
 
-Koa uses the [path-to-regexp](https://github.com/pillarjs/path-to-regexp) format for defining routes and, as seen on the example, we use the `:code` notation for declaring a **route param** named code, in this case. A HTTP request for `https://{{workspace}}--{{account}}.myvtex.com/_v/status/500` will match the route we've defined. 
+`POST`
 
-For cach _key_ on the `routes` object, there should be a **corresponding entry** on the exported Service object on `node/index.ts`, this will hook your code to a specific route.
+`https://{environment}--{accountName}.myvtex.com/v0/catalog-translation/brand`
 
-### Access Control
-You can also provide a `public` option for each route. If `true`, that resource will be reachable for everyone on the internet. If `false`, VTEX credentials will be requested as well.
+| **args**  | **Type** |
+| --------- | -------- |
+| id        | object   |
+| name      | string   |
+| text      | string   |
+| siteTitle | string   |
+| keywords  | string   |
 
-Another way of controlling access to specific routes is using **ReBACs (Resource-based access)**, that supports more robust configuration. You can read more [on this document](https://docs.google.com/document/d/1ZxNHMFIXfXz3BgTN9xyrHL3V5dYz14wivYgQjRBZ6J8/edit#heading=h.z7pad3qd2qw7) (VTEX only).
-
-#### Query String
-For `?accepting=query-string`, you **don't need to declare anything**, as any query provided to the URL will already be available for you to use on the code as `ctx.query`, already parsed as an object, or `ctx.queryString`, taken directly from the URL as a string.
-
-#### Route Params
-Route Params will be available for you to use on the code as `ctx.vtex.params`, already parsed as an object.
-For a path like `/_v/status/:code`, if you receive the request `/_v/status/200`, `ctx.vtex.params` will return `{ code: '200' }`
-
-#### HTTP methods
-When you define a route on the `service.json`, your NodeJS handlers for that route will be triggered  **on every HTTP method** (GET, POST, PUT...), so, if you need to handle them separately you need to implement a "sub-router". Fortunately, the _node-vtex-api_ provides a helper function `method`, exported from `@vtex/api`, to accomplish that behaviour. Instead of passing your handlers directly to the corresponding route on `index.ts`, you pass a `method` call passing **an object with the desired method as key and one handler as its corresponding value**. Check this example:
-```typescript
-import { method } from '@vtex/api'
-...
-
-export default new Service<Clients, State>({
-  clients,
-  routes: {
-    status: method({
-      GET: statusGetHandler,
-      POST: statusPostHandler,
-    }),
+```json
+{
+  "args": {
+    "id": "2000057",
+    "name": "Calvin Klein",
+    "text": "Esta é uma descrição da marca.",
+    "siteTitle": "Calvin Klein",
+    "keywords": "calvin klain"
   },
-})
+  "locale": "pt-BR"
+}
 ```
 
-### Throwing errors
+#### Product
 
-When building a HTTP service, we should follow HTTP rules regarding data types, cache, authorization, and status code. Our example app sets a `ctx.status` value that will be used as a HTTP status code return value, but often we also want to give proper information about errors as well.
+`POST`
 
-The **node-vtex-api** already exports a handful of **custom error classes** that can be used for that purpose, like the `NotFoundError`. You just need to throw them inside one of the the route handlers that the appropriate response will be sent to the server.
+`https://{environment}--{accountName}.myvtex.com/v0/catalog-translation/product`
 
-```typescript
-import { UserInputError } from '@vtex/api'
+| **args**           | **Type** |
+| ------------------ | -------- |
+| id                 | string   |
+| name               | string   |
+| title              | string   |
+| description        | string   |
+| shortDescription   | string   |
+| keywords           | [string] |
+| metaTagDescription | string   |
+| linkId             | string   |
 
-export async function validate(ctx: Context, next: () => Promise<any>) {
-  const { code } = ctx.vtex.route.params
-  if (isNaN(code) || code < 100 || code > 600) {
-    throw new UserInputError('Code must be a number between 100 and 600')
-  }
-...
+```json
+{
+  "args": {
+    "id": "45",
+    "name": "Câmera Retrô",
+    "description": "Esta é uma descrição genérica deste produto.",
+    "shortDescription": "Esta é uma breve descrição genérica deste produto.",
+    "title": "Câmera Retrô - Store Components",
+    "metaTagDescription": "Compre os melhores produtos em nossa loja",
+    "linkId": "black-steel-film-camera",
+    "keywords": ["lomografia", "vintage"]
+  },
+  "locale": "pt-BR"
+}
 ```
 
-You can check all the available errors [here](https://github.com/vtex/node-vtex-api/tree/fd6139349de4e68825b1074f1959dd8d0c8f4d5b/src/errors), but some are not useful for just-HTTP services. Check the most useful ones:
+#### Sku
 
-|Error Class | HTTP Code |
-|--|:--:|
-| `UserInputError` | 400 |
-| `AuthenticationError` | 401 |
-| `ForbiddenError` | 403 |
-| `NotFoundError` | 404 |
+`POST`
 
-You can also **create your custom error**, just see how it's done above ;)
+`https://{environment}--{accountName}.myvtex.com/v0/catalog-translation/sku`
 
-### Reading a JSON body
+| **args** | **Type** |
+| -------- | -------- |
+| id       | string   |
+| name     | string   |
 
-When writing POST or PUT handlers, for example, often you need to have access to the **request body** that comes as a JSON format, which is not provided directly by the handler function.
-
-For this, you have to use the [co-body](https://www.npmjs.com/package/co-body) package that will parse the request into a readable JSON object, used as below: 
-```typescript
-import { json } from 'co-body'
-export async function method(ctx: Context, next: () => Promise<any>) {
-    const body = await json(ctx.req)
+```json
+{
+  "args": {
+    "id": "46",
+    "name": "Mixer Retro - Marrom"
+  },
+  "locale": "pt-BR"
+}
 ```
 
-### Other example apps
+#### Sku or Product Specification
 
-We use Node services across all VTEX, and there are a lot inspiring examples. If you want to dive deeper on learning about this subject, don't miss those internal apps: [builder-hub](https://github.com/vtex/builder-hub) or [store-sitemap](https://github.com/vtex-apps/store-sitemap)
+`POST`
 
+`https://{environment}--{accountName}.myvtex.com/v0/catalog-translation/sku-specification`
 
-## Testing
+| **args** | **Type** |
+| -------- | -------- |
+| id       | string   |
+| name     | string   |
 
-`@vtex/test-tools` and `@types/jest` should be installed on `./node` package as `devDependencies`.
+```json
+{
+  "args": {
+    "fieldId": "31",
+    "name": "Cor"
+  },
+  "locale": "pt-BR"
+}
+```
 
-Run `vtex test` and [Jest](https://jestjs.io/) will do its thing.
+#### Specification Values
 
-Check the `node/__tests__/simple.test.ts` test case and also [Jest's Documentation](https://jestjs.io/docs/en/getting-started).
+`POST`
 
-## Splunk Dashboard
+`https://{environment}--{accountName}.myvtex.com/v0/catalog-translation/specification-values`
 
-We have an (for now, VTEX-only, internal) Splunk dashboard to show all metrics related to your app. You can find it [here](https://splunk7.vtex.com/en-US/app/vtex_colossus/node_app_metrics).
+| **args**        | **Type**                           |
+| --------------- | ---------------------------------- |
+| fieldId         | string                             |
+| fieldValueNames | [{ id: `string`, name: `string` }] |
 
-After linking this app and making some requests, you can select `vtex.service-example` and see the metrics for your app. **Don't forget to check the box Development, as you are linking your app in a development workspace**.
+```json
+{
+  "args": {
+    "fieldId": "31",
+    "fieldValuesNames": [
+      {
+        "id": "91",
+        "name": "Azul"
+      },
+      {
+        "id": "92",
+        "name": "Vermelho"
+      }
+    ]
+  },
+  "locale": "pt-BR"
+}
+```
 
-For convenience, the link for the current version: https://splunk7.vtex.com/en-US/app/vtex_colossus/node_app_metrics?form.time.earliest=-30m%40m&form.time.latest=%40m&form.picked_context=false&form.picked_region=aws-us-east-*&form.picked_service=vtex.service-example
+#### Category Group
+
+`POST`
+
+`https://{environment}--{accountName}.myvtex.com/v0/catalog-translation/category-group`
+
+| **args** | **Type** |
+| -------- | -------- |
+| groupid  | string   |
+| name     | string   |
+
+#### Bulk Translate
+
+Bulk Translate allows to make a massive translation of the above entities. For each of these, the same structure presented above must be respected.
+
+It is necessary to specify an email where you will receive a report on the translations done and will be notified in case there has been an error in any specific translation.
+
+`POST`
+
+`https://{environment}--{accountName}.myvtex.com/v0/catalog-translation/bulkTranslate`
+
+```json
+{
+  "notificationEmail": "",
+  "categories": [],
+  "brands": [],
+  "products": [],
+  "skus": [],
+  "skusProductsSpecifications": [],
+  "specificationValuesData": [],
+  "categoriesGroupsData": []
+}
+```

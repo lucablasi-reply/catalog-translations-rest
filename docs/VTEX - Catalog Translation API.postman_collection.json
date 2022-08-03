@@ -1,0 +1,472 @@
+{
+  "info": {
+    "_postman_id": "03488153-57af-4a79-b2c1-32c18a1158fb",
+    "name": "VTEX - Catalog Translation API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "20460438"
+  },
+  "item": [
+    {
+      "name": "Category Translation",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "",
+            "value": "",
+            "type": "text",
+            "disabled": true
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "authorizationToken",
+            "value": "eyJhbGciOiJFUzI1NiIsImtpZCI6IkMxMUQzODk3MkM2RkEzODdBQkZGNTJCMjg0NDE1QUU1NTlCRTU1MjYiLCJ0eXAiOiJqd3QifQ.eyJzdWIiOiJzYW50aWFnby5jbHVzZWxsYXNAdnRleC5jb20uYnIiLCJhY2NvdW50IjoidnRleHNwYWluIiwiYXVkaWVuY2UiOiJhZG1pbiIsInNlc3MiOiJkM2E5NDRlOS1mODM5LTRhNzgtOTA4Yy1hMThlZGJiMTAzNTQiLCJleHAiOjE2NTYwNzMwMDQsInVzZXJJZCI6IjljODRjMTdlLWM2YWQtNGEyNC1iYjkzLTI3YjEwMjQzZDc3ZiIsImlhdCI6MTY1NTk4NjYwNCwiaXNzIjoidG9rZW4tZW1pdHRlciIsImp0aSI6IjgwOTZhYTFhLThlY2MtNGI3ZC05NTAxLWIzNzkwZmY3MWQ4MyJ9.M38921ridASbete1TyG3-96PQgSwite1TsAtT9vMBE7jxFi6Qrq0T5RsHKetBTxfYQSKiEmFLzF79fsY_HMqdw",
+            "type": "text",
+            "disabled": true
+          },
+          {
+            "key": "AppKey",
+            "value": "{{AccesKey}}",
+            "type": "text"
+          },
+          {
+            "key": "AppToken",
+            "value": "{{SecretToken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"args\": {\n        \"id\": \"\",\n        \"name\": \"\",\n        \"title\":\"\",\n        \"description\": \"\",\n        \"keywords\": [],\n        \"linkId\": \"\"\n    },\n    \"locale\": \"\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://{{vtex-account}}.myvtex.com/v0/catalog-translation/category",
+          "protocol": "https",
+          "host": ["{{vtex-account}}", "myvtex", "com"],
+          "path": ["v0", "catalog-translation", "category"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Brand Translation",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "",
+            "value": "",
+            "type": "text",
+            "disabled": true
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "authorizationToken",
+            "value": "eyJhbGciOiJFUzI1NiIsImtpZCI6IkMxMUQzODk3MkM2RkEzODdBQkZGNTJCMjg0NDE1QUU1NTlCRTU1MjYiLCJ0eXAiOiJqd3QifQ.eyJzdWIiOiJzYW50aWFnby5jbHVzZWxsYXNAdnRleC5jb20uYnIiLCJhY2NvdW50IjoidnRleHNwYWluIiwiYXVkaWVuY2UiOiJhZG1pbiIsInNlc3MiOiJkM2E5NDRlOS1mODM5LTRhNzgtOTA4Yy1hMThlZGJiMTAzNTQiLCJleHAiOjE2NTYwNzMwMDQsInVzZXJJZCI6IjljODRjMTdlLWM2YWQtNGEyNC1iYjkzLTI3YjEwMjQzZDc3ZiIsImlhdCI6MTY1NTk4NjYwNCwiaXNzIjoidG9rZW4tZW1pdHRlciIsImp0aSI6IjgwOTZhYTFhLThlY2MtNGI3ZC05NTAxLWIzNzkwZmY3MWQ4MyJ9.M38921ridASbete1TyG3-96PQgSwite1TsAtT9vMBE7jxFi6Qrq0T5RsHKetBTxfYQSKiEmFLzF79fsY_HMqdw",
+            "type": "text",
+            "disabled": true
+          },
+          {
+            "key": "AppKey",
+            "value": "{{AccesKey}}",
+            "type": "text"
+          },
+          {
+            "key": "AppToken",
+            "value": "{{SecretToken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"args\": {\n        \"id\": \"2000037\",\n        \"name\": \"Marca Traduccion It\",\n        \"text\": \"Marca Traduccion It\",\n        \"siteTitle\": \"Marca Traduccion It\",\n        \"keywords\": \"Marca Traduccion It\"\n    },\n    \"locale\": \"it-IT\"\n}"
+        },
+        "url": {
+          "raw": "https://{{vtex-account}}.myvtex.com/v0/catalog-translation/brand",
+          "protocol": "https",
+          "host": ["{{vtex-account}}", "myvtex", "com"],
+          "path": ["v0", "catalog-translation", "brand"],
+          "query": [
+            {
+              "key": "{{AuthCookieProp}}",
+              "value": "{{VTEX-AuthCookie}}",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Product Translation",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "",
+            "value": "",
+            "type": "text",
+            "disabled": true
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "authorizationToken",
+            "value": "eyJhbGciOiJFUzI1NiIsImtpZCI6IkMxMUQzODk3MkM2RkEzODdBQkZGNTJCMjg0NDE1QUU1NTlCRTU1MjYiLCJ0eXAiOiJqd3QifQ.eyJzdWIiOiJzYW50aWFnby5jbHVzZWxsYXNAdnRleC5jb20uYnIiLCJhY2NvdW50IjoidnRleHNwYWluIiwiYXVkaWVuY2UiOiJhZG1pbiIsInNlc3MiOiJkM2E5NDRlOS1mODM5LTRhNzgtOTA4Yy1hMThlZGJiMTAzNTQiLCJleHAiOjE2NTYwNzMwMDQsInVzZXJJZCI6IjljODRjMTdlLWM2YWQtNGEyNC1iYjkzLTI3YjEwMjQzZDc3ZiIsImlhdCI6MTY1NTk4NjYwNCwiaXNzIjoidG9rZW4tZW1pdHRlciIsImp0aSI6IjgwOTZhYTFhLThlY2MtNGI3ZC05NTAxLWIzNzkwZmY3MWQ4MyJ9.M38921ridASbete1TyG3-96PQgSwite1TsAtT9vMBE7jxFi6Qrq0T5RsHKetBTxfYQSKiEmFLzF79fsY_HMqdw",
+            "type": "text",
+            "disabled": true
+          },
+          {
+            "key": "AppKey",
+            "value": "{{AccesKey}}",
+            "type": "text"
+          },
+          {
+            "key": "AppToken",
+            "value": "{{SecretToken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"args\": {\n    \"id\": \"\",\n    \"name\": \"\",\n    \"title\": \"\", \n    \"description\": \"\",\n    \"shortDescription\": \"\",\n    \"linkId\": \"\",\n    \"metaTagDescription\": \"\",\n    \"keywords\": []\n  },\n  \"locale\": \"\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://catalogtranslationsrest--vtexspain.myvtex.com/v0/catalog-translation/product",
+          "protocol": "https",
+          "host": ["catalogtranslationsrest--vtexspain", "myvtex", "com"],
+          "path": ["v0", "catalog-translation", "product"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "SKU Translation",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "",
+            "value": "",
+            "type": "text",
+            "disabled": true
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "authorizationToken",
+            "value": "eyJhbGciOiJFUzI1NiIsImtpZCI6IkMxMUQzODk3MkM2RkEzODdBQkZGNTJCMjg0NDE1QUU1NTlCRTU1MjYiLCJ0eXAiOiJqd3QifQ.eyJzdWIiOiJzYW50aWFnby5jbHVzZWxsYXNAdnRleC5jb20uYnIiLCJhY2NvdW50IjoidnRleHNwYWluIiwiYXVkaWVuY2UiOiJhZG1pbiIsInNlc3MiOiJkM2E5NDRlOS1mODM5LTRhNzgtOTA4Yy1hMThlZGJiMTAzNTQiLCJleHAiOjE2NTYwNzMwMDQsInVzZXJJZCI6IjljODRjMTdlLWM2YWQtNGEyNC1iYjkzLTI3YjEwMjQzZDc3ZiIsImlhdCI6MTY1NTk4NjYwNCwiaXNzIjoidG9rZW4tZW1pdHRlciIsImp0aSI6IjgwOTZhYTFhLThlY2MtNGI3ZC05NTAxLWIzNzkwZmY3MWQ4MyJ9.M38921ridASbete1TyG3-96PQgSwite1TsAtT9vMBE7jxFi6Qrq0T5RsHKetBTxfYQSKiEmFLzF79fsY_HMqdw",
+            "type": "text",
+            "disabled": true
+          },
+          {
+            "key": "AppKey",
+            "value": "{{AccesKey}}",
+            "type": "text"
+          },
+          {
+            "key": "AppToken",
+            "value": "{{SecretToken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"args\": {\n        \"id\": \"\",\n        \"name\": \"\"\n    },\n    \"locale\": \"\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://{{vtex-account}}.myvtex.com/v0/catalog-translation/sku",
+          "protocol": "https",
+          "host": ["{{vtex-account}}", "myvtex", "com"],
+          "path": ["v0", "catalog-translation", "sku"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "SKU Specification Translation",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "",
+            "value": "",
+            "type": "text",
+            "disabled": true
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "authorizationToken",
+            "value": "eyJhbGciOiJFUzI1NiIsImtpZCI6IkMxMUQzODk3MkM2RkEzODdBQkZGNTJCMjg0NDE1QUU1NTlCRTU1MjYiLCJ0eXAiOiJqd3QifQ.eyJzdWIiOiJzYW50aWFnby5jbHVzZWxsYXNAdnRleC5jb20uYnIiLCJhY2NvdW50IjoidnRleHNwYWluIiwiYXVkaWVuY2UiOiJhZG1pbiIsInNlc3MiOiJkM2E5NDRlOS1mODM5LTRhNzgtOTA4Yy1hMThlZGJiMTAzNTQiLCJleHAiOjE2NTYwNzMwMDQsInVzZXJJZCI6IjljODRjMTdlLWM2YWQtNGEyNC1iYjkzLTI3YjEwMjQzZDc3ZiIsImlhdCI6MTY1NTk4NjYwNCwiaXNzIjoidG9rZW4tZW1pdHRlciIsImp0aSI6IjgwOTZhYTFhLThlY2MtNGI3ZC05NTAxLWIzNzkwZmY3MWQ4MyJ9.M38921ridASbete1TyG3-96PQgSwite1TsAtT9vMBE7jxFi6Qrq0T5RsHKetBTxfYQSKiEmFLzF79fsY_HMqdw",
+            "type": "text",
+            "disabled": true
+          },
+          {
+            "key": "AppKey",
+            "value": "{{AccesKey}}",
+            "type": "text"
+          },
+          {
+            "key": "AppToken",
+            "value": "{{SecretToken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"args\": {\n        \"fieldId\": \"\",\n        \"name\": \"\"\n    },\n    \"locale\": \"\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://{{vtex-account}}.myvtex.com/v0/catalog-translation/sku-specification",
+          "protocol": "https",
+          "host": ["{{vtex-account}}", "myvtex", "com"],
+          "path": ["v0", "catalog-translation", "sku-specification"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Specification Values Translation",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "",
+            "value": "",
+            "type": "text",
+            "disabled": true
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "authorizationToken",
+            "value": "eyJhbGciOiJFUzI1NiIsImtpZCI6IkMxMUQzODk3MkM2RkEzODdBQkZGNTJCMjg0NDE1QUU1NTlCRTU1MjYiLCJ0eXAiOiJqd3QifQ.eyJzdWIiOiJzYW50aWFnby5jbHVzZWxsYXNAdnRleC5jb20uYnIiLCJhY2NvdW50IjoidnRleHNwYWluIiwiYXVkaWVuY2UiOiJhZG1pbiIsInNlc3MiOiJkM2E5NDRlOS1mODM5LTRhNzgtOTA4Yy1hMThlZGJiMTAzNTQiLCJleHAiOjE2NTYwNzMwMDQsInVzZXJJZCI6IjljODRjMTdlLWM2YWQtNGEyNC1iYjkzLTI3YjEwMjQzZDc3ZiIsImlhdCI6MTY1NTk4NjYwNCwiaXNzIjoidG9rZW4tZW1pdHRlciIsImp0aSI6IjgwOTZhYTFhLThlY2MtNGI3ZC05NTAxLWIzNzkwZmY3MWQ4MyJ9.M38921ridASbete1TyG3-96PQgSwite1TsAtT9vMBE7jxFi6Qrq0T5RsHKetBTxfYQSKiEmFLzF79fsY_HMqdw",
+            "type": "text",
+            "disabled": true
+          },
+          {
+            "key": "AppKey",
+            "value": "{{AccesKey}}",
+            "type": "text"
+          },
+          {
+            "key": "AppToken",
+            "value": "{{SecretToken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"args\": {\n        \"fieldId\": \"\",\n        \"fieldValueNames\": [\n            {\n                \"id\": \"\",\n                \"name\": \"\"\n            }\n        ]\n    },\n    \"locale\": \"\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://{{vtex-account}}.myvtex.com/v0/catalog-translation/specification-values",
+          "protocol": "https",
+          "host": ["{{vtex-account}}", "myvtex", "com"],
+          "path": ["v0", "catalog-translation", "specification-values"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Category Group Translation",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "",
+            "value": "",
+            "type": "text",
+            "disabled": true
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "authorizationToken",
+            "value": "eyJhbGciOiJFUzI1NiIsImtpZCI6IkMxMUQzODk3MkM2RkEzODdBQkZGNTJCMjg0NDE1QUU1NTlCRTU1MjYiLCJ0eXAiOiJqd3QifQ.eyJzdWIiOiJzYW50aWFnby5jbHVzZWxsYXNAdnRleC5jb20uYnIiLCJhY2NvdW50IjoidnRleHNwYWluIiwiYXVkaWVuY2UiOiJhZG1pbiIsInNlc3MiOiJkM2E5NDRlOS1mODM5LTRhNzgtOTA4Yy1hMThlZGJiMTAzNTQiLCJleHAiOjE2NTYwNzMwMDQsInVzZXJJZCI6IjljODRjMTdlLWM2YWQtNGEyNC1iYjkzLTI3YjEwMjQzZDc3ZiIsImlhdCI6MTY1NTk4NjYwNCwiaXNzIjoidG9rZW4tZW1pdHRlciIsImp0aSI6IjgwOTZhYTFhLThlY2MtNGI3ZC05NTAxLWIzNzkwZmY3MWQ4MyJ9.M38921ridASbete1TyG3-96PQgSwite1TsAtT9vMBE7jxFi6Qrq0T5RsHKetBTxfYQSKiEmFLzF79fsY_HMqdw",
+            "type": "text",
+            "disabled": true
+          },
+          {
+            "key": "AppKey",
+            "value": "{{AccesKey}}",
+            "type": "text"
+          },
+          {
+            "key": "AppToken",
+            "value": "{{SecretToken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"args\": {\n        \"groupId\": \"\",\n        \"name\": \"\"\n    },\n    \"locale\": \"\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://{{vtex-account}}.myvtex.com/v0/catalog-translation/category-group",
+          "protocol": "https",
+          "host": ["{{vtex-account}}", "myvtex", "com"],
+          "path": ["v0", "catalog-translation", "category-group"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Bulk Translation",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "",
+            "value": "",
+            "type": "text",
+            "disabled": true
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "authorizationToken",
+            "value": "eyJhbGciOiJFUzI1NiIsImtpZCI6IkMxMUQzODk3MkM2RkEzODdBQkZGNTJCMjg0NDE1QUU1NTlCRTU1MjYiLCJ0eXAiOiJqd3QifQ.eyJzdWIiOiJzYW50aWFnby5jbHVzZWxsYXNAdnRleC5jb20uYnIiLCJhY2NvdW50IjoidnRleHNwYWluIiwiYXVkaWVuY2UiOiJhZG1pbiIsInNlc3MiOiJkM2E5NDRlOS1mODM5LTRhNzgtOTA4Yy1hMThlZGJiMTAzNTQiLCJleHAiOjE2NTYwNzMwMDQsInVzZXJJZCI6IjljODRjMTdlLWM2YWQtNGEyNC1iYjkzLTI3YjEwMjQzZDc3ZiIsImlhdCI6MTY1NTk4NjYwNCwiaXNzIjoidG9rZW4tZW1pdHRlciIsImp0aSI6IjgwOTZhYTFhLThlY2MtNGI3ZC05NTAxLWIzNzkwZmY3MWQ4MyJ9.M38921ridASbete1TyG3-96PQgSwite1TsAtT9vMBE7jxFi6Qrq0T5RsHKetBTxfYQSKiEmFLzF79fsY_HMqdw",
+            "type": "text",
+            "disabled": true
+          },
+          {
+            "key": "AppKey",
+            "value": "{{AccesKey}}",
+            "type": "text"
+          },
+          {
+            "key": "AppToken",
+            "value": "{{SecretToken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"notificationEmail\": \"\",\n    \"categories\": [],\n    \"brands\": [],\n    \"products\": [],\n    \"skus\": [],\n    \"skusProductsSpecifications\": [],\n    \"specificationValuesData\": [],\n    \"categoriesGroupsData\": []\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://{{vtex-account}}.myvtex.com/v0/catalog-translation/bulk-translate",
+          "protocol": "https",
+          "host": ["{{vtex-account}}", "myvtex", "com"],
+          "path": ["v0", "catalog-translation", "bulk-translate"]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "vtex-account",
+      "value": ""
+    },
+    {
+      "key": "VTEX-AuthCookie",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "AuthCookieProp",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "SecretToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "AccesKey",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "test",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "AuthToken",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}

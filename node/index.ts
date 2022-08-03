@@ -1,29 +1,34 @@
 import type { ClientsConfig, ServiceContext, RecorderState } from '@vtex/api'
-import { LRUCache, method, Service } from '@vtex/api'
+import { LRUCache, Service, method } from '@vtex/api'
 
 import { Clients } from './clients'
-import { status } from './middlewares/status'
-import { validate } from './middlewares/validate'
+import {
+  categoryTranslation,
+  productTranslation,
+  brandTranslation,
+  skuTranslation,
+  skuProductSpecificationTranslation,
+  specificationValuesTranslation,
+  bulkTranslate,
+  validateBulkBody,
+  sendEmail,
+  validateAuthToken,
+} from './middlewares'
+import { createEmailTemplate } from './events/createEmailTemplate'
 
-const TIMEOUT_MS = 800
+const TIMEOUT_MS = 20000
 
-// Create a LRU memory cache for the Status client.
-// The @vtex/api HttpClient respects Cache-Control headers and uses the provided cache.
 const memoryCache = new LRUCache<string, any>({ max: 5000 })
 
 metrics.trackCache('status', memoryCache)
 
-// This is the configuration for clients available in `ctx.clients`.
 const clients: ClientsConfig<Clients> = {
-  // We pass our custom implementation of the clients bag, containing the Status client.
   implementation: Clients,
   options: {
-    // All IO Clients will be initialized with these options, unless otherwise specified.
     default: {
       retries: 2,
       timeout: TIMEOUT_MS,
     },
-    // This key will be merged with the default options and add this cache to our Status client.
     status: {
       memoryCache,
     },
@@ -31,22 +36,45 @@ const clients: ClientsConfig<Clients> = {
 }
 
 declare global {
-  // We declare a global Context type just to avoid re-writing ServiceContext<Clients, State> in every handler and resolver
   type Context = ServiceContext<Clients, State>
 
-  // The shape of our State object found in `ctx.state`. This is used as state bag to communicate between middlewares.
   interface State extends RecorderState {
     code: number
+    authorizationToken: string
+    bulkTranslationData: BulkTranslationData
+    notificationEmail: string | undefined
+    translationResponse: TranslationsDataResponse
+    translationData: TranslatableData
   }
 }
 
-// Export a service that defines route handlers and client options.
 export default new Service({
   clients,
+  events: {
+    onAppInstalled: createEmailTemplate,
+    onAppLinkedEvent: createEmailTemplate,
+  },
   routes: {
-    // `status` is the route ID from service.json. It maps to an array of middlewares (or a single handler).
-    status: method({
-      GET: [validate, status],
+    bulkTranslate: method({
+      POST: [validateBulkBody, bulkTranslate, sendEmail],
+    }),
+    categoryTranslation: method({
+      POST: [validateAuthToken, categoryTranslation],
+    }),
+    brandTranslation: method({
+      POST: [validateAuthToken, brandTranslation],
+    }),
+    productTranslation: method({
+      POST: [validateAuthToken, productTranslation],
+    }),
+    skuTranslation: method({
+      POST: [validateAuthToken, skuTranslation],
+    }),
+    skuSpecificationTranslation: method({
+      POST: [validateAuthToken, skuProductSpecificationTranslation],
+    }),
+    specificationValuesTranslation: method({
+      POST: [validateAuthToken, specificationValuesTranslation],
     }),
   },
 })
