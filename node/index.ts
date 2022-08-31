@@ -13,6 +13,7 @@ import {
   validateBulkBody,
   sendEmail,
   validateAuthToken,
+  categoryGroupTranslation,
 } from './middlewares'
 import { createEmailTemplate } from './events/createEmailTemplate'
 
@@ -60,6 +61,9 @@ export default new Service({
     }),
     categoryTranslation: method({
       POST: [validateAuthToken, categoryTranslation],
+    }),
+    categoryGroupTranslation: method({
+      POST: [validateAuthToken, categoryGroupTranslation],
     }),
     brandTranslation: method({
       POST: [validateAuthToken, brandTranslation],
