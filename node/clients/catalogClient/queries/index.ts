@@ -26,8 +26,8 @@ export const SKU_PRODUCT_SPCIFICATION_TRANSLATION_MUTATION = `
 `
 
 export const SPECIFICATION_VALUES_TRANSLATION_MUTATION = `
-  mutation translate($args:FieldValueInputTranslation, $locale:Locale){
-    translateFieldValues(fieldValues:$args,locale:$locale)
+  mutation translate($args: FieldValueInputTranslation, $locale: Locale){
+    translateFieldValues(fieldValues: $args, locale: $locale)
   }
 `
 
