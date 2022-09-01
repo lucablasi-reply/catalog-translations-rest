@@ -1,7 +1,7 @@
 {
   "name": "catalog-translations-rest",
   "vendor": "vtex",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "title": "Catalog Translations REST",
   "description": "REST Api for catalog translations",
   "mustUpdateAt": "2018-01-04",
