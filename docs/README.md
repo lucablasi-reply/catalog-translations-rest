@@ -1,14 +1,12 @@
 # Catalog Translations Rest
 
-Rest API that allows both the translation of each entity of the catalog in particular, as well as the massive translation of them.
+Rest API that allows to define / retrieve translations for each entity of the catalog. The definition of translations can be performed also massively by using the route "Bulk".
 
-You can download the Postman Collection from this ([link](https://github.com/vtex-apps/catalog-translations-rest/blob/development/docs/VTEX%20-%20Catalog%20Translation%20API.postman_collection.json)).
+You can download an example of Postman Collection from this ([link](https://github.com/vtex-apps/catalog-translations-rest/blob/development/docs/VTEX%20-%20Catalog%20Translation%20API.postman_collection.json)).
 
 Check ([this](https://developers.vtex.com/vtex-developer-docs/docs/catalog-internationalization)) documentation for more information.
 
-## Routes
-
-### Authentication
+## Authentication
 
 Each route must include in the headers either:
 
@@ -23,23 +21,9 @@ Or:
 | -------------------- | -------- | ----------------------------------- |
 | `authorizationToken` | string   | VTEX Auth Cookie for authorization. |
 
-Every translation entity must have this two properties:
+Following you can find the list of available routes.
 
-| **Property** | **Type** | **Description**                                  |
-| ------------ | -------- | ------------------------------------------------ |
-| `args`       | object   | Translation information for the specific entity. |
-| `locale`     | string   | Translation language (ex: 'fr-FR').              |
-
-Example:
-
-```json
-    {
-        "args": {
-          {...}
-        },
-        "name": "{locale}"
-    }
-```
+## Translation Definition
 
 #### Category
 
@@ -47,14 +31,7 @@ Example:
 
 `https://{environment}--{accountName}.myvtex.com/v0/catalog-translation/category`
 
-| **args**    | **Type** |
-| ----------- | -------- |
-| id          | string   |
-| name        | string   |
-| title       | string   |
-| description | string   |
-| keywords    | [string] |
-| linkId      | string   |
+Payload example:
 
 ```json
 {
@@ -70,19 +47,100 @@ Example:
 }
 ```
 
+#### Category Group
+
+`POST`
+
+`https://{environment}--{accountName}.myvtex.com/v0/catalog-translation/category-group`
+
+Payload example:
+
+```json
+{
+    "args": {
+        "groupId": "1794",
+        "name": "Performance"
+    },
+    "locale": "en-US"
+}
+```
+
+#### Specification Field
+
+`POST`
+
+`https://{environment}--{accountName}.myvtex.com/v0/catalog-translation/sku-specification`
+
+Payload example:
+
+```json
+{
+  "args": {
+    "fieldId": "31",
+    "name": "Cor"
+  },
+  "locale": "pt-BR"
+}
+```
+
+#### Specification Values
+
+`POST`
+
+`https://{environment}--{accountName}.myvtex.com/v0/catalog-translation/specification-values`
+
+Payload example:
+
+```json
+{
+  "args": {
+    "fieldId": "31",
+    "fieldValuesNames": [
+      {
+        "id": "91",
+        "name": "Azul"
+      },
+      {
+        "id": "92",
+        "name": "Vermelho"
+      }
+    ]
+  },
+  "locale": "pt-BR"
+}
+```
+
+#### Product Specification (type: free text)
+
+`POST`
+
+`https://{environment}--{accountName}.myvtex.com/v0/catalog-translation/product-specification`
+
+Payload example:
+
+```json
+{
+  "args": {
+    "to": "en-US",
+    "messages": [
+      {
+        "srcLang": "it-IT",
+        "srcMessage": "A libera installazione",
+        "targetMessage": "Free standing",
+        "context": "5086"
+      }
+    ] 
+  }
+}
+```
+
 #### Brand
 
 `POST`
 
 `https://{environment}--{accountName}.myvtex.com/v0/catalog-translation/brand`
 
-| **args**  | **Type** |
-| --------- | -------- |
-| id        | object   |
-| name      | string   |
-| text      | string   |
-| siteTitle | string   |
-| keywords  | string   |
+Payload example:
 
 ```json
 {
@@ -103,16 +161,7 @@ Example:
 
 `https://{environment}--{accountName}.myvtex.com/v0/catalog-translation/product`
 
-| **args**           | **Type** |
-| ------------------ | -------- |
-| id                 | string   |
-| name               | string   |
-| title              | string   |
-| description        | string   |
-| shortDescription   | string   |
-| keywords           | [string] |
-| metaTagDescription | string   |
-| linkId             | string   |
+Payload example:
 
 ```json
 {
@@ -136,10 +185,7 @@ Example:
 
 `https://{environment}--{accountName}.myvtex.com/v0/catalog-translation/sku`
 
-| **args** | **Type** |
-| -------- | -------- |
-| id       | string   |
-| name     | string   |
+Payload example:
 
 ```json
 {
@@ -150,68 +196,6 @@ Example:
   "locale": "pt-BR"
 }
 ```
-
-#### Sku or Product Specification
-
-`POST`
-
-`https://{environment}--{accountName}.myvtex.com/v0/catalog-translation/sku-specification`
-
-| **args** | **Type** |
-| -------- | -------- |
-| id       | string   |
-| name     | string   |
-
-```json
-{
-  "args": {
-    "fieldId": "31",
-    "name": "Cor"
-  },
-  "locale": "pt-BR"
-}
-```
-
-#### Specification Values
-
-`POST`
-
-`https://{environment}--{accountName}.myvtex.com/v0/catalog-translation/specification-values`
-
-| **args**        | **Type**                           |
-| --------------- | ---------------------------------- |
-| fieldId         | string                             |
-| fieldValueNames | [{ id: `string`, name: `string` }] |
-
-```json
-{
-  "args": {
-    "fieldId": "31",
-    "fieldValuesNames": [
-      {
-        "id": "91",
-        "name": "Azul"
-      },
-      {
-        "id": "92",
-        "name": "Vermelho"
-      }
-    ]
-  },
-  "locale": "pt-BR"
-}
-```
-
-#### Category Group
-
-`POST`
-
-`https://{environment}--{accountName}.myvtex.com/v0/catalog-translation/category-group`
-
-| **args** | **Type** |
-| -------- | -------- |
-| groupid  | string   |
-| name     | string   |
 
 #### Bulk Translate
 
@@ -233,5 +217,125 @@ It is necessary to specify an email where you will receive a report on the trans
   "skusProductsSpecifications": [],
   "specificationValuesData": [],
   "categoriesGroupsData": []
+}
+```
+
+## Translation Retrieval
+
+#### Category
+
+`POST`
+
+`https://{environment}--{accountName}.myvtex.com/v0/catalog-translation/category/fetch`
+
+Payload example:|
+
+```json
+{
+  "id": "12",
+  "srcLocale": "it-IT",
+  "dstLocale": "en-US"
+}
+```
+
+#### Category Group
+
+`POST`
+
+`https://{environment}--{accountName}.myvtex.com/v0/catalog-translation/category-group/fetch`
+
+Payload example::
+
+```json
+{
+  "id": "1794",
+  "srcLocale": "it-IT",
+  "dstLocale": "en-US"
+}
+```
+
+#### Specification Field
+
+`POST`
+
+`https://{environment}--{accountName}.myvtex.com/v0/catalog-translation/sku-specification/fetch`
+
+Payload example:
+
+```json
+{
+  "id": "5086",
+  "srcLocale": "it-IT",
+  "dstLocale": "en-US"
+}
+```
+
+#### Specification Values
+
+`POST`
+
+`https://{environment}--{accountName}.myvtex.com/v0/catalog-translation/specification-values/fetch`
+
+Payload example:
+
+```json
+{
+  "fieldId": "4113",
+  "srcLocale": "it-IT",
+  "dstLocale": "en-US"
+}
+```
+
+#### Brand
+
+`POST`
+
+`https://{environment}--{accountName}.myvtex.com/v0/catalog-translation/brand/fetch`
+
+Payload example:
+
+```json
+{
+  "id": "2000000",
+  "srcLocale": "it-IT",
+  "dstLocale": "en-US"
+}
+```
+
+#### Product
+
+`POST`
+
+`https://{environment}--{accountName}.myvtex.com/v0/catalog-translation/product/fetch`
+
+Payload example:
+
+```json
+{
+  "identifier": {
+    "field": "id",
+    "value": "12"
+  },
+  "srcLocale": "it-IT",
+  "dstLocale": "en-US"
+}
+```
+
+#### Sku
+
+`POST`
+
+`https://{environment}--{accountName}.myvtex.com/v0/catalog-translation/sku/fetch`
+
+Payload example:
+
+```json
+{
+  "identifier": {
+    "field": "id",
+    "value": "25"
+  },
+  "srcLocale": "it-IT",
+  "dstLocale": "en-US"
 }
 ```
