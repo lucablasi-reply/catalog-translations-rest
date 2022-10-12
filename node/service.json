@@ -37,6 +37,38 @@
     "categoryGroupTranslation": {
       "path": "/v0/catalog-translation/category-group",
       "public": true
+    },
+    "productSpecificationTranslation": {
+      "path": "/v0/catalog-translation/product-specification",
+      "public": true
+    },
+    "getCategoryTranslation": {
+      "path": "/v0/catalog-translation/category/fetch",
+      "public": true
+    },
+    "getBrandTranslation": {
+      "path": "/v0/catalog-translation/brand/fetch",
+      "public": true
+    },
+    "getProductTranslation": {
+      "path": "/v0/catalog-translation/product/fetch",
+      "public": true
+    },
+    "getSkuTranslation": {
+      "path": "/v0/catalog-translation/sku/fetch",
+      "public": true
+    },
+    "getSkuSpecificationTranslation": {
+      "path": "/v0/catalog-translation/sku-specification/fetch",
+      "public": true
+    },
+    "getSpecificationValuesTranslation": {
+      "path": "/v0/catalog-translation/specification-values/fetch",
+      "public": true
+    },
+    "getCategoryGroupTranslation": {
+      "path": "/v0/catalog-translation/category-group/fetch",
+      "public": true
     }
   },
   "events": {

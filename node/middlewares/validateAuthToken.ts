@@ -17,11 +17,9 @@ export async function validateAuthToken(
   )
 
   if (authorizationToken) {
-    const requestData: TranslatableData = await json(req)
-
     ctx.state.authorizationToken = authorizationToken
+    const requestData: unknown = await json(req)
     ctx.state.translationData = requestData
-
     await next()
   } else {
     ctx.status = 402

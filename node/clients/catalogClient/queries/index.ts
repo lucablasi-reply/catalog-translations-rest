@@ -36,3 +36,90 @@ export const CATEGORY_GROUP_TRANSLATION_MUTATION = `
     translateGroup(group: $args, locale:$locale)
   }
 `
+
+export const GET_CATEGORY_TRANSLATION_QUERY = `
+  query getTranslation($id:ID!) {
+    category(id: $id) {
+      id
+      name
+      title
+      description
+      linkId
+      keywords
+    }
+  }
+`
+
+export const BRAND_TRANSLATION_QUERY = `
+  query getTranslation($id: ID!) {
+    brand(id: $id){
+      id
+      name
+      text
+      siteTitle
+      linkId
+    }
+  }
+`
+
+export const GET_PRODUCT_TRANSLATION_QUERY = `
+  query getTranslation($identifier: ProductUniqueIdentifier) {
+    product(identifier: $identifier) {
+      id
+      name
+      title
+      description
+      shortDescription
+      metaTagDescription
+      linkId
+      keywords
+    }
+  }
+`
+export const SKU_TRANSLATION_QUERY = `
+  query getTranslation($identifier: SKUUniqueIdentifier) {
+    sku(identifier: $identifier){
+      id
+      name
+      specifications{
+        product{
+          id
+          value
+          field{
+            fieldId
+            name
+            description
+          }
+        }
+      }
+    }
+  }
+`
+
+export const SKU_PRODUCT_SPCIFICATION_TRANSLATION_QUERY = `
+  query getTranslation($id: ID) {
+    field(id: $id){
+      fieldId
+      name
+    }
+  }
+`
+
+export const SPECIFICATION_VALUES_TRANSLATION_QUERY = `
+  query getTranslation($fieldId: ID) {
+    fieldValues(fieldId: $fieldId){
+      fieldValueId
+      value
+      text
+    }
+  }
+`
+
+export const GET_CATEGORY_GROUP_TRANSLATION_QUERY = `
+  query getTranslation($id: ID) {
+    group(id: $id){
+      id
+      name
+    }
+  }
+`

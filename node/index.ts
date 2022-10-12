@@ -14,6 +14,14 @@ import {
   sendEmail,
   validateAuthToken,
   categoryGroupTranslation,
+  productSpecificationTranslation,
+  getProductTranslation,
+  getCategoryTranslation,
+  getCategoryGroupTranslation,
+  getBrandTranslation,
+  getSkuTranslation,
+  getSkuProductSpecificationTranslation,
+  getSpecificationValuesTranslation,
 } from './middlewares'
 import { createEmailTemplate } from './events/createEmailTemplate'
 
@@ -45,7 +53,7 @@ declare global {
     bulkTranslationData: BulkTranslationData
     notificationEmail: string | undefined
     translationResponse: TranslationsDataResponse
-    translationData: TranslatableData
+    translationData: unknown
   }
 }
 
@@ -79,6 +87,30 @@ export default new Service({
     }),
     specificationValuesTranslation: method({
       POST: [validateAuthToken, specificationValuesTranslation],
+    }),
+    productSpecificationTranslation: method({
+      POST: [validateAuthToken, productSpecificationTranslation],
+    }),
+    getCategoryTranslation: method({
+      POST: [validateAuthToken, getCategoryTranslation],
+    }),
+    getCategoryGroupTranslation: method({
+      POST: [validateAuthToken, getCategoryGroupTranslation],
+    }),
+    getBrandTranslation: method({
+      POST: [validateAuthToken, getBrandTranslation],
+    }),
+    getProductTranslation: method({
+      POST: [validateAuthToken, getProductTranslation],
+    }),
+    getSkuTranslation: method({
+      POST: [validateAuthToken, getSkuTranslation],
+    }),
+    getSkuSpecificationTranslation: method({
+      POST: [validateAuthToken, getSkuProductSpecificationTranslation],
+    }),
+    getSpecificationValuesTranslation: method({
+      POST: [validateAuthToken, getSpecificationValuesTranslation],
     }),
   },
 })

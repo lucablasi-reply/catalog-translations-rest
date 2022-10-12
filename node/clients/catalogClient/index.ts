@@ -14,6 +14,13 @@ import {
   SKU_PRODUCT_SPCIFICATION_TRANSLATION_MUTATION,
   SPECIFICATION_VALUES_TRANSLATION_MUTATION,
   CATEGORY_GROUP_TRANSLATION_MUTATION,
+  GET_PRODUCT_TRANSLATION_QUERY,
+  GET_CATEGORY_TRANSLATION_QUERY,
+  GET_CATEGORY_GROUP_TRANSLATION_QUERY,
+  SKU_TRANSLATION_QUERY,
+  BRAND_TRANSLATION_QUERY,
+  SKU_PRODUCT_SPCIFICATION_TRANSLATION_QUERY,
+  SPECIFICATION_VALUES_TRANSLATION_QUERY,
 } from './queries'
 
 class CustomGraphQLError extends Error {
@@ -56,6 +63,7 @@ export class CatalogGraphQL extends AppGraphQLClient {
       | SKUProductSpecificationData
       | SpecificationValuesData
       | CategoryGroupData
+      | ProductSpecificationPayload
   ): Promise<GraphQLResponse<Serializable>> => {
     return (
       this.graphql
@@ -80,21 +88,72 @@ export class CatalogGraphQL extends AppGraphQLClient {
     )
   }
 
+  private translationQuery = async (
+    authToken: string,
+    query: string,
+    variables:
+      | CategoryQueryPayload
+      | CategoryGroupQueryPayload
+      | FieldQueryPayload
+      | FieldValuesQueryPayload
+      | BrandQueryPayload
+      | ProductQueryPayload
+      | SkuQueryPayload,
+  ): Promise<GraphQLResponse<Serializable>> => {
+    this.options!.headers = {
+      ...this.options?.headers,
+      ...{
+        VtexIdclientAutCookie: authToken,
+        "x-vtex-tenant": variables.srcLocale,
+        "x-vtex-locale": variables.dstLocale
+      }
+    }
+    return this.graphql
+        .query<GraphQLResponse<Serializable>, TranslationQueryPayload>(
+          {
+            query: query,
+            variables,
+          },
+          this.options
+        )
+        .then(
+          throwOnGraphQLErrors('Error fetching data from vtex.catalog-graphql')
+        )
+        // eslint-disable-next-line @typescript-eslint/no-shadow
+        .then((query) => {
+          return query
+        })
+  }
+
   public categoryTranslation = async (
     authToken: string,
     categoryData: TranslatableData
-  ): Promise<any> =>
+  ): Promise<GraphQLResponse<Serializable>> =>
     this.translationMutation(
       authToken,
       CATEGORY_TRANSLATIONS_MUTATION,
       categoryData
     )
 
+  public categoryGroupTranslation = async (
+    authToken: string,
+    categoryGroupData: TranslatableData
+  ): Promise<GraphQLResponse<Serializable>> =>
+    this.translationMutation(
+      authToken,
+      CATEGORY_GROUP_TRANSLATION_MUTATION,
+      categoryGroupData
+    )
+
   public brandTranslation = async (
     authToken: string,
     brandData: TranslatableData
   ): Promise<GraphQLResponse<Serializable>> =>
-    this.translationMutation(authToken, BRAND_TRANSLATION_MUTATION, brandData)
+    this.translationMutation(
+      authToken,
+      BRAND_TRANSLATION_MUTATION,
+      brandData
+    )
 
   public productTranslation = async (
     authToken: string,
@@ -110,7 +169,11 @@ export class CatalogGraphQL extends AppGraphQLClient {
     authToken: string,
     skuData: TranslatableData
   ): Promise<GraphQLResponse<Serializable>> =>
-    this.translationMutation(authToken, SKU_TRANSLATION_MUTATION, skuData)
+    this.translationMutation(
+      authToken,
+      SKU_TRANSLATION_MUTATION,
+      skuData
+    )
 
   public skuProductSpecificationTranslation = async (
     authToken: string,
@@ -132,13 +195,73 @@ export class CatalogGraphQL extends AppGraphQLClient {
       specificationData
     )
 
-  public categoryGroupTranslation = async (
+  public getCategoryTranslation = async (
     authToken: string,
-    categoryGroupData: TranslatableData
+    categoryData: CategoryQueryPayload
   ): Promise<GraphQLResponse<Serializable>> =>
-    this.translationMutation(
+    this.translationQuery(
       authToken,
-      CATEGORY_GROUP_TRANSLATION_MUTATION,
+      GET_CATEGORY_TRANSLATION_QUERY,
+      categoryData
+    )
+
+  public getCategoryGroupTranslation = async (
+    authToken: string,
+    categoryGroupData: CategoryGroupQueryPayload
+  ): Promise<GraphQLResponse<Serializable>> =>
+    this.translationQuery(
+      authToken,
+      GET_CATEGORY_GROUP_TRANSLATION_QUERY,
       categoryGroupData
+    )
+
+  public getBrandTranslation = async (
+    authToken: string,
+    brandData: BrandQueryPayload
+  ): Promise<GraphQLResponse<Serializable>> =>
+    this.translationQuery(
+      authToken,
+      BRAND_TRANSLATION_QUERY,
+      brandData
+    )
+
+  public getProductTranslation = async (
+    authToken: string,
+    productData: ProductQueryPayload
+  ): Promise<GraphQLResponse<Serializable>> =>
+    this.translationQuery(
+      authToken,
+      GET_PRODUCT_TRANSLATION_QUERY,
+      productData
+    )
+
+  public getSkuTranslation = async (
+    authToken: string,
+    skuData: SkuQueryPayload
+  ): Promise<GraphQLResponse<Serializable>> =>
+    this.translationQuery(
+      authToken,
+      SKU_TRANSLATION_QUERY,
+      skuData
+    )
+
+  public getSkuProductSpecificationTranslation = async (
+    authToken: string,
+    specificationData: FieldQueryPayload
+  ): Promise<GraphQLResponse<Serializable>> =>
+    this.translationQuery(
+      authToken,
+      SKU_PRODUCT_SPCIFICATION_TRANSLATION_QUERY,
+      specificationData
+    )
+
+  public getSpecificationValuesTranslation = async (
+    authToken: string,
+    specificationData: FieldValuesQueryPayload
+  ): Promise<GraphQLResponse<Serializable>> =>
+    this.translationQuery(
+      authToken,
+      SPECIFICATION_VALUES_TRANSLATION_QUERY,
+      specificationData
     )
 }

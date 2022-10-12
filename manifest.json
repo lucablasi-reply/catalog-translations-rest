@@ -1,7 +1,7 @@
 {
   "name": "catalog-translations-rest",
   "vendor": "vtex",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "title": "Catalog Translations REST",
   "description": "REST Api for catalog translations",
   "mustUpdateAt": "2018-01-04",
@@ -9,7 +9,8 @@
   "dependencies": {
     "vtex.catalog-graphql": "1.x",
     "vtex.file-manager-graphql": "0.x",
-    "vtex.file-manager": "0.x"
+    "vtex.file-manager": "0.x",
+    "vtex.messages": "1.x"
   },
   "builders": {
     "node": "6.x",
@@ -44,6 +45,9 @@
     },
     {
       "name": "vtex.catalog-graphql:resolve-graphql"
+    },
+    {
+      "name": "vtex.messages:graphql-save-translation-messages"
     },
     {
       "name": "outbound-access",

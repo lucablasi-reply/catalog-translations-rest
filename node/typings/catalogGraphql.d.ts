@@ -72,6 +72,31 @@ interface CategoryGroupData {
   locale: string
 }
 
+interface ProductSpecificationData {
+  srcLang: string // src locale
+  srcMessage: string  // src product specification
+  targetMessage: string // dst product specification
+  context: string // specification field ID
+}
+
+interface ProductSpecificationPayload {
+  args: {
+    to: string // dst locale
+    messages: ProductSpecificationData[] // translation data
+  }
+  locale: string
+}
+
+type TranslatableData =
+  | CategoryTranslationData
+  | BrandData
+  | ProductData
+  | SKUData
+  | SKUProductSpecificationData
+  | SpecificationValuesData
+  | CategoryGroupData
+  | ProductSpecificationPayload
+
 interface TranslationResponse {
   translateCategory: boolean
 }
@@ -87,11 +112,59 @@ interface BulkTranslationData {
   categoriesGroupsData: CategoryGroupData[]
 }
 
-type TranslatableData =
-  | CategoryTranslationData
-  | BrandData
-  | ProductData
-  | SKUData
-  | SKUProductSpecificationData
-  | SpecificationValuesData
-  | CategoryGroupData
+interface CategoryQueryPayload {
+  id: string
+  srcLocale: string
+  dstLocale: string
+}
+
+interface CategoryGroupQueryPayload {
+  id: string,
+  srcLocale: string
+  dstLocale: string
+}
+
+interface FieldQueryPayload {
+  id: string,
+  srcLocale: string
+  dstLocale: string
+}
+
+interface FieldValuesQueryPayload {
+  fieldId: string,
+  srcLocale: string
+  dstLocale: string
+}
+
+interface BrandQueryPayload {
+  id: string,
+  srcLocale: string
+  dstLocale: string
+}
+
+interface ProductQueryPayload {
+  identifier: {
+    field: string
+    value: any
+  },
+  srcLocale: string
+  dstLocale: string
+}
+
+interface SkuQueryPayload {
+  identifier: {
+    field: string
+    value: any
+  },
+  srcLocale: string
+  dstLocale: string
+}
+
+type TranslationQueryPayload =
+  | CategoryQueryPayload
+  | CategoryGroupQueryPayload
+  | FieldQueryPayload
+  | FieldValuesQueryPayload
+  | BrandQueryPayload
+  | ProductQueryPayload
+  | SkuQueryPayload
